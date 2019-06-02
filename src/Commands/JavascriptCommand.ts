@@ -43,14 +43,15 @@ export class JavascriptCommand extends CommandBase {
             const message = await command.obj.channel.send(new RichEmbed().setTitle(`devdocs: "${ command.arguments[ 0 ].name }"`)
                                                                           .setColor(3447003)
                                                                           .setDescription(h2m(doc.substr(0, 1000)) + '...'));
+
             // @ts-ignore
-            await message.react('🗑');
+            await message.react(message.guild.emojis.find(emoji => emoji.name === 'waste_basket'));
             // @ts-ignore
-            await message.react(':arrow_backward:');
+            await message.react(message.guild.emojis.find(emoji => emoji.name === 'arrow_backward'));
             // @ts-ignore
-            await message.react(':arrow_forward:');
+            await message.react(message.guild.emojis.find(emoji => emoji.name === 'arrow_forward'));
             // @ts-ignore
-            await message.react(':link:');
+            await message.react(message.guild.emojis.find(emoji => emoji.name === 'link'));
 
             const filter = (reaction: any, user: any) => {
 
