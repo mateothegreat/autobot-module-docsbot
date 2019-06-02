@@ -74,7 +74,7 @@ export class JavascriptCommand extends CommandBase {
             };
 
             // @ts-ignore
-            let collector = message.createReactionCollector(filter, { maxEmojis: 3, time: 105000 });
+            let collector = message.createReactionCollector(filter, { max: 1, maxEmojis: 3, time: 105000 });
 
             setTimeout(() => {
 
