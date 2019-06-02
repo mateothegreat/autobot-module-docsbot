@@ -90,11 +90,10 @@ export class JavascriptCommand extends CommandBase {
 
                         currentPage++;
 
+                        reaction.remove();
+
                         reaction.message.edit(JavascriptCommand.getEmbed(result, currentPage));
 
-                        reaction.users.remove();
-
-                        reaction.message.react('⏩');
 
                     } else if (reaction.emoji.name === '⏪') {
 
@@ -102,9 +101,9 @@ export class JavascriptCommand extends CommandBase {
 
                             currentPage--;
 
-                            reaction.message.edit(JavascriptCommand.getEmbed(result, currentPage));
-
                             reaction.remove();
+
+                            reaction.message.edit(JavascriptCommand.getEmbed(result, currentPage));
 
                         }
 
