@@ -55,11 +55,11 @@ export class JavascriptCommand extends CommandBase {
             const message = await command.obj.channel.send(JavascriptCommand.getEmbed(result, 1));
 
             // @ts-ignore
-            await message.react('🗑');
+            message.react('🗑');
             // @ts-ignore
-            await message.react('⏪');
+            message.react('⏪');
             // @ts-ignore
-            await message.react('⏩');
+            message.react('⏩');
 
             const filter = (reaction: any, user: any) => {
 
