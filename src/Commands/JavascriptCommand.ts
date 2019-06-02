@@ -66,11 +66,11 @@ export class JavascriptCommand extends CommandBase {
 
                        console.log(collected);
 
-                       if (!collected.me) {
 
-                           const reaction = collected.first();
+                       const reaction = collected.first();
 
-                           console.log(123123, reaction);
+                       console.log(123123, reaction);
+                       if (!reaction.me) {
 
                            if (reaction.emoji.name === '🗑') {
 
