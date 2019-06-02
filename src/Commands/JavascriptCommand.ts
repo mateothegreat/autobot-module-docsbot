@@ -18,7 +18,7 @@ export class JavascriptCommand extends CommandBase {
         return new RichEmbed().setTitle(`devdocs: "${ doc.key }"`)
                               .setColor(3447003)
                               .addField('devdocs.io url', `https://devdocs.io/javascript/${ doc.key }`)
-                              .setDescription(h2m(doc.doc).substr(JavascriptCommand.PAGE_LENGTH * page - 1, JavascriptCommand.PAGE_LENGTH));
+                              .setDescription(h2m(doc.doc).substr(JavascriptCommand.PAGE_LENGTH * page, JavascriptCommand.PAGE_LENGTH));
 
     }
 
@@ -46,13 +46,13 @@ export class JavascriptCommand extends CommandBase {
      */
     public async run(command: CommandParser) {
 
-        let currentPage: number = 1;
+        let currentPage: number = 0;
 
         const result = JSONUtil.getByName('strict_mode');
 
         if (result) {
 
-            const message = await command.obj.channel.send(JavascriptCommand.getEmbed(result, 1));
+            const message = await command.obj.channel.send(JavascriptCommand.getEmbed(result, currentPage));
 
             // @ts-ignore
             message.react('🗑');
@@ -70,7 +70,7 @@ export class JavascriptCommand extends CommandBase {
             };
 
             // @ts-ignore
-            let collector = message.createReactionCollector(filter, { time: 15000 });
+            let collector = message.createReactionCollector(filter, { time: 105000 });
 
             // @ts-ignore
             collector.on('collect', (reaction, collector) => {
