@@ -92,7 +92,9 @@ export class JavascriptCommand extends CommandBase {
 
                         reaction.message.edit(JavascriptCommand.getEmbed(result, currentPage));
 
-                        reaction.remove();
+                        reaction.users.remove();
+
+                        reaction.message.react('⏩');
 
                     } else if (reaction.emoji.name === '⏪') {
 
