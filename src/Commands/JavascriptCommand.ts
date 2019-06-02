@@ -81,35 +81,31 @@ export class JavascriptCommand extends CommandBase {
                 // @ts-ignore
                 collector.on('collect', (reaction, collector) => {
 
-                    if (!reaction.users.first(reaction.count).bot) {
+                    console.log(reaction.users.last());
 
-                        console.log(reaction.users);
+                    if (reaction.emoji.name === '⏩') {
 
-                        if (reaction.emoji.name === '⏩') {
+                        currentPage++;
 
-                            currentPage++;
+                        reaction.message.edit(JavascriptCommand.getEmbed(result, currentPage));
+
+                        reaction.remove(reaction.users.last(reaction.count));
+
+                    } else if (reaction.emoji.name === '⏪') {
+
+                        if (currentPage > 0) {
+
+                            currentPage--;
 
                             reaction.message.edit(JavascriptCommand.getEmbed(result, currentPage));
 
-                            reaction.remove(reaction.users.first(reaction.count));
-
-                        } else if (reaction.emoji.name === '⏪') {
-
-                            if (currentPage > 0) {
-
-                                currentPage--;
-
-                                reaction.message.edit(JavascriptCommand.getEmbed(result, currentPage));
-
-                                reaction.remove(reaction.users.first(reaction.count));
-
-                            }
-
-                        } else if (reaction.emoji.name === '🗑') {
-
-                            reaction.message.delete();
+                            reaction.remove(reaction.users.last(reaction.count));
 
                         }
+
+                    } else if (reaction.emoji.name === '🗑') {
+
+                        reaction.message.delete();
 
                     }
 
