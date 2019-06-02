@@ -11,7 +11,7 @@ const h2m = require('h2m');
 @Command
 export class JavascriptCommand extends CommandBase {
 
-    public static readonly PAGE_LENGTH: number = 1900;
+    public static readonly PAGE_LENGTH: number = Number(process.env.DOCSBOT_LIMIT_CHARS);
 
     public static getEmbed(doc: Doc, page: number): RichEmbed {
 
@@ -127,6 +127,5 @@ export class JavascriptCommand extends CommandBase {
         }
 
     }
-
 
 }
