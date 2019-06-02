@@ -42,11 +42,15 @@ export class UpdateCommand extends CommandBase {
 
         if (result) {
 
-            fs.createWriteStream(`${ process.env.DOCSBOT_SAVE_PATH }/${ command.arguments[ 0 ].name }.json`);
+            const writer = fs.createWriteStream(`${ process.env.DOCSBOT_SAVE_PATH }/${ command.arguments[ 0 ].name }.json`);
+
+            writer.write(result);
+
+            writer.close();
 
             command.obj.channel.send(new RichEmbed().setTitle('devdocs update')
                                                     .setColor(3447003)
-                                                    .setDescription(`Downloaded https://docs.devdocs.io/${ command.arguments[ 0 ].name }/db.json (${ result.data.legnth } bytes)!`));
+                                                    .setDescription(`Downloaded https://docs.devdocs.io/${ command.arguments[ 0 ].name }/db.json!`));
 
         } else {
 
