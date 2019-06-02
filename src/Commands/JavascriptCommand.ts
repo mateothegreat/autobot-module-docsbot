@@ -32,6 +32,9 @@ export class JavascriptCommand extends CommandBase {
             event: Event.MESSAGE,
             name: '!js',
             group: 'docs',
+            roles: [
+                'docsbot'
+            ],
             description: '!js <search term>'
 
         });
@@ -64,7 +67,6 @@ export class JavascriptCommand extends CommandBase {
             const filter = (reaction: any, user: any) => {
 
                 // @ts-ignore
-                // return [ '🗑' ].includes(reaction.emoji.name && user.id !== message.author.id);
                 return [ '🗑', '⏪', '⏩' ].includes(reaction.emoji.name);
 
             };
@@ -77,10 +79,6 @@ export class JavascriptCommand extends CommandBase {
                 // @ts-ignore
                 collector.on('collect', (reaction, collector) => {
 
-                    console.log(reaction);
-                    console.log(123123, reaction.count);
-                    console.log(123123, reaction.users.first(reaction.count));
-
                     if (!reaction.users.first(reaction.count).bot) {
 
                         if (reaction.emoji.name === '⏩') {
@@ -91,10 +89,13 @@ export class JavascriptCommand extends CommandBase {
 
                         } else if (reaction.emoji.name === '⏪') {
 
-                            currentPage--;
+                            if (currentPage > 0) {
 
-                            reaction.message.edit(JavascriptCommand.getEmbed(result, currentPage));
+                                currentPage--;
 
+                                reaction.message.edit(JavascriptCommand.getEmbed(result, currentPage));
+
+                            }
 
                         } else if (reaction.emoji.name === '🗑') {
 
@@ -105,8 +106,8 @@ export class JavascriptCommand extends CommandBase {
                     }
 
                 });
-                
-            }, 2000);
+
+            }, 3000);
 
             // @ts-ignore
             collector.on('end', collected => {
