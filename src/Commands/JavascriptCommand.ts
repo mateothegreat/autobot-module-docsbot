@@ -48,7 +48,9 @@ export class JavascriptCommand extends CommandBase {
             // @ts-ignore
             message.react(':arrow_backward:');
             // @ts-ignore
-            message.react(':arrow_forward:').react(':link');
+            message.react(':arrow_forward:');
+            // @ts-ignore
+            message.react(':link');
 
             const filter = (reaction: any, user: any) => {
 
