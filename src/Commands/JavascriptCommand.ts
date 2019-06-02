@@ -54,7 +54,7 @@ export class JavascriptCommand extends CommandBase {
 
                 // @ts-ignore
                 // return [ '🗑' ].includes(reaction.emoji.name && user.id !== message.author.id);
-                return [ '🗑', '⏪', '⏩' ].includes(reaction.emoji.name && user.id !== message.author.id);
+                return [ '🗑', '⏪', '⏩' ].includes(reaction.emoji.name);
 
             };
 
@@ -82,9 +82,12 @@ export class JavascriptCommand extends CommandBase {
                    })
                    // @ts-ignore
                    .catch(collected => {
+
                        console.log(`After a minute, only ${ collected.size } out of 4 reacted.`);
+
                        // @ts-ignore
                        message.reply('you didn\'t react with neither a thumbs up, nor a thumbs down.');
+
                    });
 
         } else {
