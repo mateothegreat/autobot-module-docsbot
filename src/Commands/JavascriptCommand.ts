@@ -74,14 +74,19 @@ export class JavascriptCommand extends CommandBase {
             };
 
             command.obj.client.on('messageReactionAdd', async (reaction, user) => {
-                console.log(reaction);
-                console.log(reaction.users);
 
-                await reaction.remove();
-                // @ts-ignore
-                await message.react('⏩');
+                if (!reaction.users.first().bot) {
+                    console.log(reaction);
+                    console.log(reaction.users);
 
-                if (reaction.emoji.name === "✅") {
+
+                    await reaction.remove();
+                    // @ts-ignore
+                    await message.react('⏩');
+
+                    if (reaction.emoji.name === "✅") {
+                    }
+
                 }
             });
             // @ts-ignore
