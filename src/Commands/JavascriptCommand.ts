@@ -44,7 +44,9 @@ export class JavascriptCommand extends CommandBase {
                                                                           .setColor(3447003)
                                                                           .setDescription(h2m(doc.substr(0, 1000)) + '...'));
 
-            console.log(message.guild.emojis.find(emoji => emoji.name === 'link'));
+            console.log(message.guild.emojis);
+
+            console.log(message.guild.emojis.find(emoji => emoji.name === ':link:'));
 
             // @ts-ignore
             await message.react(message.guild.emojis.find(emoji => emoji.name === 'waste_basket'));
