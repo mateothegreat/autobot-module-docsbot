@@ -42,9 +42,7 @@ export class UpdateCommand extends CommandBase {
 
         if (result) {
 
-            console.log(result);
-
-            fs.writeFile(`${ process.env.DOCSBOT_SAVE_PATH }/${ command.arguments[ 0 ].name }.json`, result.data, { encoding: 'null' }, (err) => {
+            fs.writeFile(`${ process.env.DOCSBOT_SAVE_PATH }/${ command.arguments[ 0 ].name }.json`, result.data, { encoding: 'utf-8' }, (err) => {
 
 
             });
