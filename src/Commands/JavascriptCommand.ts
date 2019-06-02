@@ -81,7 +81,7 @@ export class JavascriptCommand extends CommandBase {
                 // @ts-ignore
                 collector.on('collect', (reaction, collector) => {
 
-                    console.log(1);
+                    console.log(collector);
 
                     console.log(reaction.users.last());
 
@@ -92,7 +92,7 @@ export class JavascriptCommand extends CommandBase {
 
                         reaction.remove();
 
-                        reaction.message.edit(JavascriptCommand.getEmbed(result, currentPage));
+                        // reaction.message.edit(JavascriptCommand.getEmbed(result, currentPage));
 
 
                     } else if (reaction.emoji.name === '⏪') {
@@ -103,7 +103,7 @@ export class JavascriptCommand extends CommandBase {
 
                             reaction.remove();
 
-                            reaction.message.edit(JavascriptCommand.getEmbed(result, currentPage));
+                            // reaction.message.edit(JavascriptCommand.getEmbed(result, currentPage));
 
                         }
 
