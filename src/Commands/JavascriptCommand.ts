@@ -40,20 +40,19 @@ export class JavascriptCommand extends CommandBase {
 
         if (doc) {
 
-            command.obj.channel.send(new RichEmbed().setTitle(`devdocs: "${ command.arguments[ 0 ].name }"`)
-                                                    .setColor(3447003)
-                                                    .setDescription(h2m(doc.substr(0, 1000)) + '...'));
+            const message = await command.obj.channel.send(new RichEmbed().setTitle(`devdocs: "${ command.arguments[ 0 ].name }"`)
+                                                                          .setColor(3447003)
+                                                                          .setDescription(h2m(doc.substr(0, 1000)) + '...'));
+            console.log(message);
+
+            // @ts-ignore
+            message.react('🗑');
+            
         } else {
 
             command.obj.channel.send(new RichEmbed().setTitle('devdocs')
                                                     .setColor(3447003)
-                                                    .setDescription(`Could not find any results for "${ command.arguments[ 0 ].name }`)).then(message => {
-
-                console.log(message);
-
-                // @ts-ignore
-                message.react('🗑');
-            });
+                                                    .setDescription(`Could not find any results for "${ command.arguments[ 0 ].name }`));
 
         }
 
