@@ -1,24 +1,28 @@
+import { Doc } from './Doc';
+
 export class JSONUtil {
 
-    public static JSON = require('../../db.json');
+    public static getByName(name: string): Doc {
 
-    public static getByName(name: string): { key: string, name: string, doc: string } {
+        if (name.match(/^[a-z0-9-]+$/i)) {
 
-        for (let key in JSONUtil.JSON) {
+            const json = require(`${ process.env.DOCSBOT_SAVE_PATH }/${ name }.json`);
 
-            console.log(key);
+            for (let key in json) {
 
-            const split = key.split('/');
+                const split = key.split('/');
 
-            if (split[ split.length - 1 ] == name) {
+                if (split[ split.length - 1 ] == name) {
 
-                return {
+                    return {
 
-                    key,
-                    name,
-                    doc: JSONUtil.JSON[ key ]
-                    
-                };
+                        key,
+                        name,
+                        doc: json[ key ]
+
+                    };
+
+                }
 
             }
 
