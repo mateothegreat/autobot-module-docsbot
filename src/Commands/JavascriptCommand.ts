@@ -36,11 +36,13 @@ export class JavascriptCommand extends CommandBase {
 
         const doc = JSONUtil.getByName('strict_mode');
 
+        console.log(h2m(doc.substr(0, 1000)));
+
         if (doc) {
 
             command.obj.channel.send(new RichEmbed().setTitle(`devdocs: "${ command.arguments[ 0 ].name }"`)
                                                     .setColor(3447003)
-                                                    .setDescription(h2m(doc.substr(0, 1000))) + '...');
+                                                    .setDescription(h2m(doc.substr(0, 1000)) + '...'));
         } else {
 
             command.obj.channel.send(new RichEmbed().setTitle('devdocs')
