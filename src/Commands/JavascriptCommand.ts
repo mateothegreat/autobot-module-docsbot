@@ -43,7 +43,7 @@ export class JavascriptCommand extends CommandBase {
             const message = await command.obj.channel.send(new RichEmbed().setTitle(`devdocs: "${ command.arguments[ 0 ].name }"`)
                                                                           .setColor(3447003)
                                                                           .addField('devdocs.io url', `https://devdocs.io/javascript/${ result.key }`)
-                                                                          .setDescription('```md' + h2m(result.doc).substr(0, 1880) + '...```'));
+                                                                          .setDescription("```md\n" + h2m(result.doc).substr(0, 1880) + "...\n```"));
             // @ts-ignore
             await message.react('🗑');
             // @ts-ignore
