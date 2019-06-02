@@ -89,6 +89,8 @@ export class JavascriptCommand extends CommandBase {
 
                             reaction.message.edit(JavascriptCommand.getEmbed(result, currentPage));
 
+                            reaction.remove(reaction.users.first(reaction.count));
+
                         } else if (reaction.emoji.name === '⏪') {
 
                             if (currentPage > 0) {
@@ -96,6 +98,8 @@ export class JavascriptCommand extends CommandBase {
                                 currentPage--;
 
                                 reaction.message.edit(JavascriptCommand.getEmbed(result, currentPage));
+
+                                reaction.remove(reaction.users.first(reaction.count));
 
                             }
 
