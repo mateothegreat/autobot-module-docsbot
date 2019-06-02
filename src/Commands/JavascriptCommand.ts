@@ -70,45 +70,65 @@ export class JavascriptCommand extends CommandBase {
             };
 
             // @ts-ignore
-            message.awaitReactions(filter, { max: 1, time: 60000, errors: [ 'time' ] })
+            let collector = message.createReactionCollector(filter, { time: 5000 });
 
-                   // @ts-ignore
-                   .then(collected => {
+            // @ts-ignore
+            collector.on('collect', (reaction, collector) => {
 
-                       const reaction = collected.first();
+                console.log(reaction);
+                console.log(reaction.emoji.name);
 
-                       console.log(123123, reaction);
+                console.log('got a reaction');
 
-                       console.log(reaction.me);
+            });
 
-                       console.log(reaction.emoji.name);
+            // @ts-ignore
+            collector.on('end', collected => {
 
-                       if (!reaction.me) {
+                console.log(`collected ${ collected.size } reactions`);
 
-                           if (reaction.emoji.name === '⏩') {
+            });
 
-                               // @ts-ignore
-                               message.reply('delete');
-
-                           } else {
-                               // @ts-ignore
-                               message.reply('you reacted with a thumbs down.');
-
-                           }
-
-                       }
-
-
-                   })
-                   // @ts-ignore
-                   .catch(collected => {
-
-                       console.log(`After a minute, only ${ collected.size } out of 4 reacted.`);
-
-                       // @ts-ignore
-                       message.reply('you didn\'t react with neither a thumbs up, nor a thumbs down.');
-
-                   });
+            // @ts-ignore
+            // message.awaitReactions(filter, { max: 1, time: 60000, errors: [ 'time' ] })
+            //
+            //        // @ts-ignore
+            //        .then(collected => {
+            //
+            //            const reaction = collected.first();
+            //
+            //            console.log(123123, reaction);
+            //
+            //            console.log(reaction.me);
+            //
+            //            console.log(reaction.emoji.name);
+            //
+            //            if (!reaction.me) {
+            //
+            //                if (reaction.emoji.name === '⏩') {
+            //
+            //                    // @ts-ignore
+            //                    message.reply('delete');
+            //
+            //                } else {
+            //                    // @ts-ignore
+            //                    message.reply('you reacted with a thumbs down.');
+            //
+            //                }
+            //
+            //            }
+            //
+            //
+            //        })
+            //        // @ts-ignore
+            //        .catch(collected => {
+            //
+            //            console.log(`After a minute, only ${ collected.size } out of 4 reacted.`);
+            //
+            //            // @ts-ignore
+            //            message.reply('you didn\'t react with neither a thumbs up, nor a thumbs down.');
+            //
+            //        });
 
         } else {
 
