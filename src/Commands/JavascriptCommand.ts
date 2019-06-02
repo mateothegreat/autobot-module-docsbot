@@ -83,6 +83,8 @@ export class JavascriptCommand extends CommandBase {
 
                     if (!reaction.users.first(reaction.count).bot) {
 
+                        console.log(reaction.users);
+
                         if (reaction.emoji.name === '⏩') {
 
                             currentPage++;
