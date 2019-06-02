@@ -53,7 +53,7 @@ export class JavascriptCommand extends CommandBase {
 
         let currentPage: number = 0;
 
-        const result = JSONUtil.getByName(command.arguments[ 0 ].name);
+        const result = JSONUtil.getByName('javascript', command.arguments[ 0 ].name);
 
         if (result) {
 

@@ -2,11 +2,11 @@ import { Doc } from './Doc';
 
 export class JSONUtil {
 
-    public static getByName(name: string): Doc {
+    public static getByName(filename: string, name: string): Doc {
 
-        if (name.match(/^[a-z0-9-]+$/i)) {
+        if (filename.match(/^[a-z0-9-]+$/i)) {
 
-            const json = require(`${ process.env.DOCSBOT_SAVE_PATH }/${ name }.json`);
+            const json = require(`${ process.env.DOCSBOT_SAVE_PATH }/${ filename }.json`);
 
             for (let key in json) {
 
