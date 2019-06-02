@@ -44,7 +44,11 @@ export class JavascriptCommand extends CommandBase {
                                                                           .setColor(3447003)
                                                                           .setDescription(h2m(doc.substr(0, 1000)) + '...'));
             // @ts-ignore
-            message.react('🗑').react(':arrow_backward:').react(':arrow_forward:').react(':link');
+            message.react('🗑');
+            // @ts-ignore
+            message.react(':arrow_backward:');
+            // @ts-ignore
+            message.react(':arrow_forward:').react(':link');
 
             const filter = (reaction: any, user: any) => {
 
@@ -58,6 +62,9 @@ export class JavascriptCommand extends CommandBase {
 
                    // @ts-ignore
                    .then(collected => {
+
+                       console.log(collected);
+
                        const reaction = collected.first();
 
                        if (reaction.emoji.name === '🗑') {
