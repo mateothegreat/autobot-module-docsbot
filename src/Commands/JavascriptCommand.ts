@@ -84,7 +84,8 @@ export class JavascriptCommand extends CommandBase {
                     currentPage++;
 
                     // @ts-ignore
-                    message.edit(JavascriptCommand.getEmbed(result, 1));
+                    message.edit(123);
+                    // message.edit(JavascriptCommand.getEmbed(result, currentPage));
 
                     console.log(reaction.emoji.name);
 
