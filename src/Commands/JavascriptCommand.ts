@@ -1,5 +1,6 @@
 import { Command, CommandBase, CommandParser, Event } from '@autobot/common';
 import { RichEmbed }                                  from 'discord.js';
+import { Doc }                                        from '../_lib/Doc';
 import { JSONUtil }                                   from '../_lib/JSONUtil';
 
 const h2m = require('h2m');
@@ -9,6 +10,17 @@ const h2m = require('h2m');
  */
 @Command
 export class JavascriptCommand extends CommandBase {
+
+    public static readonly PAGE_LENGTH: number = 1900;
+
+    public static getEmbed(doc: Doc, page: number): RichEmbed {
+
+        return new RichEmbed().setTitle(`devdocs: "${ doc.key }"`)
+                              .setColor(3447003)
+                              .addField('devdocs.io url', `https://devdocs.io/javascript/${ doc.key }`)
+                              .setDescription("```md\n" + h2m(doc.doc).substr(JavascriptCommand.PAGE_LENGTH * page, JavascriptCommand.PAGE_LENGTH) + "...\n```");
+
+    }
 
     public constructor() {
 
@@ -34,16 +46,15 @@ export class JavascriptCommand extends CommandBase {
      */
     public async run(command: CommandParser) {
 
-        const result = JSONUtil.getByName('strict_mode');
+        let currentPosition: number = 0;
+        let currentLength = 0;
 
-        console.log(h2m(result.doc.substr(0, 1000)));
+        const result = JSONUtil.getByName('strict_mode');
 
         if (result) {
 
-            const message = await command.obj.channel.send(new RichEmbed().setTitle(`devdocs: "${ command.arguments[ 0 ].name }"`)
-                                                                          .setColor(3447003)
-                                                                          .addField('devdocs.io url', `https://devdocs.io/javascript/${ result.key }`)
-                                                                          .setDescription("```md\n" + h2m(result.doc).substr(0, 1880) + "...\n```"));
+            const message = await command.obj.channel.send(JavascriptCommand.getEmbed(result, 1));
+
             // @ts-ignore
             await message.react('🗑');
             // @ts-ignore
@@ -71,7 +82,7 @@ export class JavascriptCommand extends CommandBase {
 
                        if (!reaction.me) {
 
-                           if (reaction.emoji.name === '🗑') {
+                           if (reaction.emoji.name === '⏩') {
 
                                // @ts-ignore
                                message.reply('delete');
@@ -117,5 +128,6 @@ export class JavascriptCommand extends CommandBase {
         // command.obj.channel.send(embed);
 
     }
+
 
 }
