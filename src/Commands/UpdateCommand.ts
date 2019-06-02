@@ -20,7 +20,9 @@ export class UpdateCommand extends CommandBase {
             name: '!update',
             group: 'docs',
             roles: [
-                'docsbot'
+
+                process.env.DOCSBOT_ADMIN_ROLE_NAME
+
             ],
             description: 'Downloads the latest db.json file from devdocs.io with an !update <language>'
 
@@ -38,17 +40,13 @@ export class UpdateCommand extends CommandBase {
 
         const result = await axios(`https://docs.devdocs.io/${ command.arguments[ 0 ].name }/db.json`);
 
-        console.log(result);
-
         if (result) {
 
-            const writer = fs.createWriteStream(`${ process.env.DOCSBOT_SAVE_PATH }/${ command.arguments[ 0 ].name }.json`);
-
-            console.log(writer);
+            fs.createWriteStream(`${ process.env.DOCSBOT_SAVE_PATH }/${ command.arguments[ 0 ].name }.json`);
 
             command.obj.channel.send(new RichEmbed().setTitle('devdocs update')
                                                     .setColor(3447003)
-                                                    .setDescription(`Downloaded"${ command.arguments[ 0 ].name }db.json!`));
+                                                    .setDescription(`Downloaded https://docs.devdocs.io/${ command.arguments[ 0 ].name }/db.json (${ result.data.legnth } bytes)!`));
 
         } else {
 

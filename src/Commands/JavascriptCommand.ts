@@ -33,7 +33,9 @@ export class JavascriptCommand extends CommandBase {
             name: '!js',
             group: 'docs',
             roles: [
-                'docsbot'
+
+                process.env.DOCSBOT_ADMIN_ROLE_NAME
+                
             ],
             description: '!js <search term>'
 
