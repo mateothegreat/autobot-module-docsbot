@@ -75,103 +75,100 @@ export class JavascriptCommand extends CommandBase {
 
             command.obj.client.on('messageUpdate', async (reaction, user) => {
 
-                console.log(reaction);
-                console.log(user);
+                    console.log(reaction);
+                    console.log(user);
 
-                // if (!reaction.users.first().bot) {
-                //     console.log(reaction);
-                //     console.log(reaction.users);
-                //
-                //
-                //     await reaction.remove();
-                //     // @ts-ignore
-                //     await message.react('⏩');
-                //
-                //     if (reaction.emoji.name === "✅") {
-                //     }
+                    // if (!reaction.users.first().bot) {
+                    //     console.log(reaction);
+                    //     console.log(reaction.users);
+                    //
+                    //
+                    //     await reaction.remove();
+                    //     // @ts-ignore
+                    //     await message.react('⏩');
+                    //
+                    //     if (reaction.emoji.name === "✅") {
+                    //     }
 
-            }
+                    // }
+                }
+            );
+
+            // @ts-ignore
+            // let collector = message.createReactionCollector(filter, { max: 1, maxEmojis: 3, time: 105000 });
+            //
+            // setTimeout(() => {
+            //
+            //
+            //     // @ts-ignore
+            //     message.awaitReactions(filter, { max: 1, time: 9999, errors: [ 'time' ] })
+            //            // @ts-ignore
+            //            .then(async (collected) => {
+            //                // logic
+            //
+            //                console.log(123);
+            //                console.log(collected);
+            //
+            //            }).catch(() => {
+            //     });
+            //
+            //     // @ts-ignore
+            //     //
+            //     // collector.on('collect', (reaction, collector) => {
+            //     //
+            //     //     reaction.remove();
+            //     //
+            //     //     console.log(collector);
+            //     //
+            //     //     console.log(reaction.users.last());
+            //     //     //
+            //     //     // if (reaction.emoji.name === '⏩') {
+            //     //     //     console.log(2);
+            //     //     //
+            //     //     //     currentPage++;
+            //     //     //
+            //     //     //     reaction.remove();
+            //     //     //
+            //     //     //     // reaction.message.edit(JavascriptCommand.getEmbed(result, currentPage));
+            //     //     //
+            //     //     //
+            //     //     // } else if (reaction.emoji.name === '⏪') {
+            //     //     //
+            //     //     //     if (currentPage > 0) {
+            //     //     //
+            //     //     //         currentPage--;
+            //     //     //
+            //     //     //         reaction.remove();
+            //     //     //
+            //     //     //         // reaction.message.edit(JavascriptCommand.getEmbed(result, currentPage));
+            //     //     //
+            //     //     //     }
+            //     //     //
+            //     //     // } else if (reaction.emoji.name === '🗑') {
+            //     //     //
+            //     //     //     reaction.message.delete();
+            //     //     //
+            //     //     // }
+            //     //
+            //     // });
+            //
+            // }, 3000);
+
+            // @ts-ignore
+            // collector.on('end', collected => {
+            //
+            //     console.log(`collected ${ collected.size } reactions`);
+            //
+            // });
+
+        } else {
+
+            command.obj.channel.send(new RichEmbed().setTitle('devdocs')
+                                                    .setColor(3447003)
+                                                    .setDescription(`Could not find any results for "${ command.arguments[ 0 ].name }`));
+
         }
-    );
 
-    // @ts-ignore
-    // let collector = message.createReactionCollector(filter, { max: 1, maxEmojis: 3, time: 105000 });
-    //
-    // setTimeout(() => {
-    //
-    //
-    //     // @ts-ignore
-    //     message.awaitReactions(filter, { max: 1, time: 9999, errors: [ 'time' ] })
-    //            // @ts-ignore
-    //            .then(async (collected) => {
-    //                // logic
-    //
-    //                console.log(123);
-    //                console.log(collected);
-    //
-    //            }).catch(() => {
-    //     });
-    //
-    //     // @ts-ignore
-    //     //
-    //     // collector.on('collect', (reaction, collector) => {
-    //     //
-    //     //     reaction.remove();
-    //     //
-    //     //     console.log(collector);
-    //     //
-    //     //     console.log(reaction.users.last());
-    //     //     //
-    //     //     // if (reaction.emoji.name === '⏩') {
-    //     //     //     console.log(2);
-    //     //     //
-    //     //     //     currentPage++;
-    //     //     //
-    //     //     //     reaction.remove();
-    //     //     //
-    //     //     //     // reaction.message.edit(JavascriptCommand.getEmbed(result, currentPage));
-    //     //     //
-    //     //     //
-    //     //     // } else if (reaction.emoji.name === '⏪') {
-    //     //     //
-    //     //     //     if (currentPage > 0) {
-    //     //     //
-    //     //     //         currentPage--;
-    //     //     //
-    //     //     //         reaction.remove();
-    //     //     //
-    //     //     //         // reaction.message.edit(JavascriptCommand.getEmbed(result, currentPage));
-    //     //     //
-    //     //     //     }
-    //     //     //
-    //     //     // } else if (reaction.emoji.name === '🗑') {
-    //     //     //
-    //     //     //     reaction.message.delete();
-    //     //     //
-    //     //     // }
-    //     //
-    //     // });
-    //
-    // }, 3000);
-
-    // @ts-ignore
-    // collector.on('end', collected => {
-    //
-    //     console.log(`collected ${ collected.size } reactions`);
-    //
-    // });
-
-}
-
-else
-{
-
-    command.obj.channel.send(new RichEmbed().setTitle('devdocs')
-                                            .setColor(3447003)
-                                            .setDescription(`Could not find any results for "${ command.arguments[ 0 ].name }`));
-
-}
-
-}
+    }
 
 }
