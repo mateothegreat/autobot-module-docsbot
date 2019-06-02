@@ -42,13 +42,7 @@ export class UpdateCommand extends CommandBase {
 
         if (result) {
 
-            const writer = fs.createWriteStream(`${ process.env.DOCSBOT_SAVE_PATH }/${ command.arguments[ 0 ].name }.json`, { flags: 'w' });
-
-            console.log(result);
-
-            writer.write('result.data');
-
-            writer.close();
+            result.data.pipe(fs.createWriteStream(`${ process.env.DOCSBOT_SAVE_PATH }/${ command.arguments[ 0 ].name }.json`));
 
             command.obj.channel.send(new RichEmbed().setTitle('devdocs update')
                                                     .setColor(3447003)
