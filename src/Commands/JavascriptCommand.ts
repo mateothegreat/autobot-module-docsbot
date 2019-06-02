@@ -76,6 +76,7 @@ export class JavascriptCommand extends CommandBase {
             collector.on('collect', (reaction, collector) => {
 
                 console.log(reaction);
+                console.log(123123, reaction.users[ 0 ]);
 
                 if (!reaction.users[ reaction.count - 1 ].bot) {
 
