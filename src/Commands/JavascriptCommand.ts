@@ -46,14 +46,15 @@ export class JavascriptCommand extends CommandBase {
             // @ts-ignore
             await message.react('🗑');
             // @ts-ignore
-            await message.react('⏪');
+            // await message.react('⏪');
             // @ts-ignore
-            await message.react('⏩');
+            // await message.react('⏩');
 
             const filter = (reaction: any, user: any) => {
 
                 // @ts-ignore
-                return [ '🗑', '⏪', '⏩' ].includes(reaction.emoji.name);
+                return [ '🗑' ].includes(reaction.emoji.name && user.id !== message.author.id);
+                // return [ '🗑', '⏪', '⏩' ].includes(reaction.emoji.name && user.id !== message.author.id);
 
             };
 
@@ -68,6 +69,7 @@ export class JavascriptCommand extends CommandBase {
                        const reaction = collected.first();
 
                        if (reaction.emoji.name === '🗑') {
+
                            // @ts-ignore
                            message.reply('delete');
 
