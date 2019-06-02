@@ -89,7 +89,7 @@ export class JavascriptCommand extends CommandBase {
 
                         reaction.message.edit(JavascriptCommand.getEmbed(result, currentPage));
 
-                        reaction.remove(reaction.users.last(reaction.count));
+                        reaction.remove();
 
                     } else if (reaction.emoji.name === '⏪') {
 
@@ -99,7 +99,7 @@ export class JavascriptCommand extends CommandBase {
 
                             reaction.message.edit(JavascriptCommand.getEmbed(result, currentPage));
 
-                            reaction.remove(reaction.users.last(reaction.count));
+                            reaction.remove();
 
                         }
 
