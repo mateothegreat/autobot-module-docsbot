@@ -77,14 +77,13 @@ export class JavascriptCommand extends CommandBase {
 
                 console.log(reaction);
 
-                if (!reaction.me) {
+                if (!reaction.users[ reaction.count - 1 ].bot) {
 
                     currentPage++;
 
                     // @ts-ignore
                     message.edit(JavascriptCommand.getEmbed(result, 1));
 
-                    console.log(reaction);
                     console.log(reaction.emoji.name);
 
                     console.log('got a reaction');
