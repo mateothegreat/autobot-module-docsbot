@@ -42,9 +42,9 @@ export class UpdateCommand extends CommandBase {
 
         if (result) {
 
-            const writer = fs.createWriteStream(`${ process.env.DOCSBOT_SAVE_PATH }/${ command.arguments[ 0 ].name }.json`);
+            const writer = fs.createWriteStream(`${ process.env.DOCSBOT_SAVE_PATH }/${ command.arguments[ 0 ].name }.json`, { flags: 'w' });
 
-            writer.write(result);
+            writer.write(result.data);
 
             writer.close();
 
