@@ -50,7 +50,7 @@ export class JavascriptCommand extends CommandBase {
             // @ts-ignore
             await message.react(':arrow_forward:');
             // @ts-ignore
-            await message.react(':link');
+            await message.react(':link:');
 
             const filter = (reaction: any, user: any) => {
 
