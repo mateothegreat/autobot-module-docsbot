@@ -66,20 +66,25 @@ export class JavascriptCommand extends CommandBase {
 
                        console.log(collected);
 
-                       const reaction = collected.first();
+                       if (!collected.me) {
 
-                       console.log(reaction);
+                           const reaction = collected.first();
 
-                       if (reaction.emoji.name === '🗑') {
+                           console.log(123123, reaction);
 
-                           // @ts-ignore
-                           message.reply('delete');
+                           if (reaction.emoji.name === '🗑') {
 
-                       } else {
-                           // @ts-ignore
-                           message.reply('you reacted with a thumbs down.');
+                               // @ts-ignore
+                               message.reply('delete');
+
+                           } else {
+                               // @ts-ignore
+                               message.reply('you reacted with a thumbs down.');
+
+                           }
 
                        }
+
 
                    })
                    // @ts-ignore
