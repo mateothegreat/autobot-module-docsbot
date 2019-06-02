@@ -15,10 +15,10 @@ export class JavascriptCommand extends CommandBase {
 
     public static getEmbed(doc: Doc, page: number): RichEmbed {
 
-        return new RichEmbed().setTitle(`devdocs: "${ doc.key }"`)
+        return new RichEmbed().setTitle(`asdfasdfdevdocs: "${ doc.key }"`)
                               .setColor(3447003)
                               .addField('devdocs.io url', `https://devdocs.io/javascript/${ doc.key }`)
-                              .setDescription("```md\n" + h2m(doc.doc).substr(JavascriptCommand.PAGE_LENGTH * page, JavascriptCommand.PAGE_LENGTH) + "...\n```");
+                              .setDescription(h2m(doc.doc).substr(JavascriptCommand.PAGE_LENGTH * page, JavascriptCommand.PAGE_LENGTH));
 
     }
 
