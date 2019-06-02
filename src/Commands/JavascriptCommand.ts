@@ -70,15 +70,24 @@ export class JavascriptCommand extends CommandBase {
             };
 
             // @ts-ignore
-            let collector = message.createReactionCollector(filter, { time: 5000 });
+            let collector = message.createReactionCollector(filter, { time: 15000 });
 
             // @ts-ignore
             collector.on('collect', (reaction, collector) => {
 
-                console.log(reaction);
-                console.log(reaction.emoji.name);
+                if (!reaction.me) {
 
-                console.log('got a reaction');
+                    currentPage++;
+
+                    // @ts-ignore
+                    message.edit(JavascriptCommand.getEmbed(result, 1));
+
+                    console.log(reaction);
+                    console.log(reaction.emoji.name);
+
+                    console.log('got a reaction');
+
+                }
 
             });
 
