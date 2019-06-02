@@ -74,16 +74,19 @@ export class JavascriptCommand extends CommandBase {
             };
 
             // @ts-ignore
-            let collector = message.createReactionCollector(filter, { time: 105000 });
+            let collector = message.createReactionCollector(filter, { maxEmojis: 3, time: 105000 });
 
             setTimeout(() => {
 
                 // @ts-ignore
                 collector.on('collect', (reaction, collector) => {
 
+                    console.log(1);
+
                     console.log(reaction.users.last());
 
                     if (reaction.emoji.name === '⏩') {
+                        console.log(2);
 
                         currentPage++;
 
