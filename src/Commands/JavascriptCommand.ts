@@ -35,7 +35,7 @@ export class JavascriptCommand extends CommandBase {
             roles: [
 
                 process.env.DOCSBOT_ADMIN_ROLE_NAME
-                
+
             ],
             description: '!js <search term>'
 
@@ -53,7 +53,7 @@ export class JavascriptCommand extends CommandBase {
 
         let currentPage: number = 0;
 
-        const result = JSONUtil.getByName('strict_mode');
+        const result = JSONUtil.getByName(command.arguments[ 0 ].name);
 
         if (result) {
 
