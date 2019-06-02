@@ -34,15 +34,16 @@ export class JavascriptCommand extends CommandBase {
      */
     public async run(command: CommandParser) {
 
-        const doc = JSONUtil.getByName('strict_mode');
+        const result = JSONUtil.getByName('strict_mode');
 
-        console.log(h2m(doc.substr(0, 1000)));
+        console.log(h2m(result.doc.substr(0, 1000)));
 
-        if (doc) {
+        if (result) {
 
             const message = await command.obj.channel.send(new RichEmbed().setTitle(`devdocs: "${ command.arguments[ 0 ].name }"`)
                                                                           .setColor(3447003)
-                                                                          .setDescription(h2m(doc.substr(0, 1000)) + '...'));
+                                                                          .addField('url', `https://devdocs.io/javascript/${ result.key }`)
+                                                                          .setDescription(h2m(result.doc.substr(0, 1800)) + '...'));
             // @ts-ignore
             await message.react('🗑');
             // @ts-ignore
@@ -64,12 +65,10 @@ export class JavascriptCommand extends CommandBase {
                    // @ts-ignore
                    .then(collected => {
 
-                       console.log(collected);
-
-
                        const reaction = collected.first();
 
                        console.log(123123, reaction);
+
                        if (!reaction.me) {
 
                            if (reaction.emoji.name === '🗑') {

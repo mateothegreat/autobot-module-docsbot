@@ -2,7 +2,7 @@ export class JSONUtil {
 
     public static JSON = require('../../db.json');
 
-    public static getByName(name: string): string {
+    public static getByName(name: string): { key: string, name: string, doc: string } {
 
         for (let key in JSONUtil.JSON) {
 
@@ -12,7 +12,13 @@ export class JSONUtil {
 
             if (split[ split.length - 1 ] == name) {
 
-                return JSONUtil.JSON[ key ];
+                return {
+
+                    key,
+                    name,
+                    doc: JSONUtil.JSON[ key ]
+                    
+                };
 
             }
 
