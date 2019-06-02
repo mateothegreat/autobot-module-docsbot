@@ -2,6 +2,8 @@ import { Command, CommandBase, CommandParser, Event } from '@autobot/common';
 import { RichEmbed }                                  from 'discord.js';
 import { JSONUtil }                                   from '../_lib/JSONUtil';
 
+const h2m = require('h2m');
+
 /**
  *
  */
@@ -38,7 +40,7 @@ export class JavascriptCommand extends CommandBase {
 
             command.obj.channel.send(new RichEmbed().setTitle(`devdocs: "${ command.arguments[ 0 ].name }"`)
                                                     .setColor(3447003)
-                                                    .setDescription(doc.substr(0, 1000)));
+                                                    .setDescription(h2m(doc.substr(0, 1000))) + '...');
         } else {
 
             command.obj.channel.send(new RichEmbed().setTitle('devdocs')
