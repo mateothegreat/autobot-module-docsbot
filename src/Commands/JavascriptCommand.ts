@@ -81,15 +81,24 @@ export class JavascriptCommand extends CommandBase {
 
                 if (!reaction.users.first(reaction.count).bot) {
 
-                    currentPage++;
+                    if (reaction.emoji.name === '⏩') {
 
-                    // @ts-ignore
-                    // reaction.message.edit(123);
-                    reaction.message.edit(JavascriptCommand.getEmbed(result, currentPage));
+                        currentPage++;
 
-                    console.log(reaction.emoji.name);
+                        reaction.message.edit(JavascriptCommand.getEmbed(result, currentPage));
 
-                    console.log('got a reaction');
+                    } else if (reaction.emoji.name === '⏪') {
+
+                        currentPage--;
+
+                        reaction.message.edit(JavascriptCommand.getEmbed(result, currentPage));
+
+
+                    } else if (reaction.emoji.name === '🗑') {
+
+                        reaction.message.delete();
+
+                    }
 
                 }
 
@@ -102,47 +111,6 @@ export class JavascriptCommand extends CommandBase {
 
             });
 
-            // @ts-ignore
-            // message.awaitReactions(filter, { max: 1, time: 60000, errors: [ 'time' ] })
-            //
-            //        // @ts-ignore
-            //        .then(collected => {
-            //
-            //            const reaction = collected.first();
-            //
-            //            console.log(123123, reaction);
-            //
-            //            console.log(reaction.me);
-            //
-            //            console.log(reaction.emoji.name);
-            //
-            //            if (!reaction.me) {
-            //
-            //                if (reaction.emoji.name === '⏩') {
-            //
-            //                    // @ts-ignore
-            //                    message.reply('delete');
-            //
-            //                } else {
-            //                    // @ts-ignore
-            //                    message.reply('you reacted with a thumbs down.');
-            //
-            //                }
-            //
-            //            }
-            //
-            //
-            //        })
-            //        // @ts-ignore
-            //        .catch(collected => {
-            //
-            //            console.log(`After a minute, only ${ collected.size } out of 4 reacted.`);
-            //
-            //            // @ts-ignore
-            //            message.reply('you didn\'t react with neither a thumbs up, nor a thumbs down.');
-            //
-            //        });
-
         } else {
 
             command.obj.channel.send(new RichEmbed().setTitle('devdocs')
@@ -150,18 +118,6 @@ export class JavascriptCommand extends CommandBase {
                                                     .setDescription(`Could not find any results for "${ command.arguments[ 0 ].name }`));
 
         }
-
-        //
-        // const embed = new RichEmbed().setTitle('Flip!')
-        //                              .setColor(3447003);
-        //
-        // results.forEach(row => {
-        //
-        //     embed.addField(`❯ ${ row.total } points`, `<@${ row.to_userid }>`);
-        //
-        // });
-        //
-        // command.obj.channel.send(embed);
 
     }
 
