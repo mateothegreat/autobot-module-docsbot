@@ -81,37 +81,39 @@ export class JavascriptCommand extends CommandBase {
                 // @ts-ignore
                 collector.on('collect', (reaction, collector) => {
 
+                    reaction.remove();
+
                     console.log(collector);
 
                     console.log(reaction.users.last());
-
-                    if (reaction.emoji.name === '⏩') {
-                        console.log(2);
-
-                        currentPage++;
-
-                        reaction.remove();
-
-                        // reaction.message.edit(JavascriptCommand.getEmbed(result, currentPage));
-
-
-                    } else if (reaction.emoji.name === '⏪') {
-
-                        if (currentPage > 0) {
-
-                            currentPage--;
-
-                            reaction.remove();
-
-                            // reaction.message.edit(JavascriptCommand.getEmbed(result, currentPage));
-
-                        }
-
-                    } else if (reaction.emoji.name === '🗑') {
-
-                        reaction.message.delete();
-
-                    }
+                    //
+                    // if (reaction.emoji.name === '⏩') {
+                    //     console.log(2);
+                    //
+                    //     currentPage++;
+                    //
+                    //     reaction.remove();
+                    //
+                    //     // reaction.message.edit(JavascriptCommand.getEmbed(result, currentPage));
+                    //
+                    //
+                    // } else if (reaction.emoji.name === '⏪') {
+                    //
+                    //     if (currentPage > 0) {
+                    //
+                    //         currentPage--;
+                    //
+                    //         reaction.remove();
+                    //
+                    //         // reaction.message.edit(JavascriptCommand.getEmbed(result, currentPage));
+                    //
+                    //     }
+                    //
+                    // } else if (reaction.emoji.name === '🗑') {
+                    //
+                    //     reaction.message.delete();
+                    //
+                    // }
 
                 });
 
