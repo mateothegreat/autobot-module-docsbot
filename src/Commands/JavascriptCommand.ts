@@ -15,10 +15,10 @@ export class JavascriptCommand extends CommandBase {
 
     public static getEmbed(doc: Doc, page: number): RichEmbed {
 
-        return new RichEmbed().setTitle(`asdfasdfdevdocs: "${ doc.key }"`)
+        return new RichEmbed().setTitle(`devdocs: "${ doc.key }"`)
                               .setColor(3447003)
                               .addField('devdocs.io url', `https://devdocs.io/javascript/${ doc.key }`)
-                              .setDescription(h2m(doc.doc).substr(JavascriptCommand.PAGE_LENGTH * page, JavascriptCommand.PAGE_LENGTH));
+                              .setDescription(h2m(doc.doc).substr(JavascriptCommand.PAGE_LENGTH * page - 1, JavascriptCommand.PAGE_LENGTH));
 
     }
 
@@ -46,8 +46,7 @@ export class JavascriptCommand extends CommandBase {
      */
     public async run(command: CommandParser) {
 
-        let currentPosition: number = 0;
-        let currentLength = 0;
+        let currentPage: number = 1;
 
         const result = JSONUtil.getByName('strict_mode');
 
@@ -79,6 +78,10 @@ export class JavascriptCommand extends CommandBase {
                        const reaction = collected.first();
 
                        console.log(123123, reaction);
+
+                       console.log(reaction.me);
+
+                       console.log(reaction.emoji.name);
 
                        if (!reaction.me) {
 
