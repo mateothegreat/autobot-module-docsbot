@@ -44,13 +44,13 @@ export class JavascriptCommand extends CommandBase {
                                                                           .setColor(3447003)
                                                                           .setDescription(h2m(doc.substr(0, 1000)) + '...'));
             // @ts-ignore
-            message.react('🗑');
+            await message.react('🗑');
             // @ts-ignore
-            message.react(':arrow_backward:');
+            await message.react(':arrow_backward:');
             // @ts-ignore
-            message.react(':arrow_forward:');
+            await message.react(':arrow_forward:');
             // @ts-ignore
-            message.react(':link');
+            await message.react(':link');
 
             const filter = (reaction: any, user: any) => {
 
