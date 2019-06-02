@@ -75,6 +75,8 @@ export class JavascriptCommand extends CommandBase {
             // @ts-ignore
             collector.on('collect', (reaction, collector) => {
 
+                console.log(reaction);
+
                 if (!reaction.me) {
 
                     currentPage++;
