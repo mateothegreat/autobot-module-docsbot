@@ -55,11 +55,11 @@ export class JavascriptCommand extends CommandBase {
             const message = await command.obj.channel.send(JavascriptCommand.getEmbed(result, currentPage));
 
             // @ts-ignore
-            message.react('🗑');
+            await message.react('🗑');
             // @ts-ignore
-            message.react('⏪');
+            await message.react('⏪');
             // @ts-ignore
-            message.react('⏩');
+            await message.react('⏩');
 
             const filter = (reaction: any, user: any) => {
 
@@ -72,37 +72,41 @@ export class JavascriptCommand extends CommandBase {
             // @ts-ignore
             let collector = message.createReactionCollector(filter, { time: 105000 });
 
-            // @ts-ignore
-            collector.on('collect', (reaction, collector) => {
+            setTimeout(() => {
 
-                console.log(reaction);
-                console.log(123123, reaction.count);
-                console.log(123123, reaction.users.first(reaction.count));
+                // @ts-ignore
+                collector.on('collect', (reaction, collector) => {
 
-                if (!reaction.users.first(reaction.count).bot) {
+                    console.log(reaction);
+                    console.log(123123, reaction.count);
+                    console.log(123123, reaction.users.first(reaction.count));
 
-                    if (reaction.emoji.name === '⏩') {
+                    if (!reaction.users.first(reaction.count).bot) {
 
-                        currentPage++;
+                        if (reaction.emoji.name === '⏩') {
 
-                        reaction.message.edit(JavascriptCommand.getEmbed(result, currentPage));
+                            currentPage++;
 
-                    } else if (reaction.emoji.name === '⏪') {
+                            reaction.message.edit(JavascriptCommand.getEmbed(result, currentPage));
 
-                        currentPage--;
+                        } else if (reaction.emoji.name === '⏪') {
 
-                        reaction.message.edit(JavascriptCommand.getEmbed(result, currentPage));
+                            currentPage--;
+
+                            reaction.message.edit(JavascriptCommand.getEmbed(result, currentPage));
 
 
-                    } else if (reaction.emoji.name === '🗑') {
+                        } else if (reaction.emoji.name === '🗑') {
 
-                        reaction.message.delete();
+                            reaction.message.delete();
+
+                        }
 
                     }
 
-                }
-
-            });
+                });
+                
+            }, 2000);
 
             // @ts-ignore
             collector.on('end', collected => {
