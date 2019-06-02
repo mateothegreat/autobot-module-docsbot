@@ -150,11 +150,11 @@ export class JavascriptCommand extends CommandBase {
             // }, 3000);
 
             // @ts-ignore
-            collector.on('end', collected => {
-
-                console.log(`collected ${ collected.size } reactions`);
-
-            });
+            // collector.on('end', collected => {
+            //
+            //     console.log(`collected ${ collected.size } reactions`);
+            //
+            // });
 
         } else {
 
