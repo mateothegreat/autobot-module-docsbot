@@ -43,11 +43,41 @@ export class JavascriptCommand extends CommandBase {
             const message = await command.obj.channel.send(new RichEmbed().setTitle(`devdocs: "${ command.arguments[ 0 ].name }"`)
                                                                           .setColor(3447003)
                                                                           .setDescription(h2m(doc.substr(0, 1000)) + '...'));
-            console.log(message);
+            // @ts-ignore
+            message.react('🗑').react(':arrow_backward:').react(':arrow_forward:').react(':link');
+
+            const filter = (reaction: any, user: any) => {
+
+                // @ts-ignore
+                return [ '🗑', ':arrow_backward:', ':arrow_forward:' ].includes(reaction.emoji.name);
+
+            };
 
             // @ts-ignore
-            message.react('🗑');
-            
+            message.awaitReactions(filter, { max: 1, time: 60000, errors: [ 'time' ] })
+
+                   // @ts-ignore
+                   .then(collected => {
+                       const reaction = collected.first();
+
+                       if (reaction.emoji.name === '🗑') {
+                           // @ts-ignore
+                           message.reply('delete');
+
+                       } else {
+                           // @ts-ignore
+                           message.reply('you reacted with a thumbs down.');
+
+                       }
+
+                   })
+                   // @ts-ignore
+                   .catch(collected => {
+                       console.log(`After a minute, only ${ collected.size } out of 4 reacted.`);
+                       // @ts-ignore
+                       message.reply('you didn\'t react with neither a thumbs up, nor a thumbs down.');
+                   });
+
         } else {
 
             command.obj.channel.send(new RichEmbed().setTitle('devdocs')
