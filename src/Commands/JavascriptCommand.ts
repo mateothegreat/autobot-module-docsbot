@@ -68,6 +68,8 @@ export class JavascriptCommand extends CommandBase {
 
                        const reaction = collected.first();
 
+                       console.log(reaction);
+
                        if (reaction.emoji.name === '🗑') {
 
                            // @ts-ignore
