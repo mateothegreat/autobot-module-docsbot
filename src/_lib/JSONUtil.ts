@@ -16,39 +16,30 @@ export class JSONUtil {
                 const fuzz = new FuzzySet(Object.keys(json));
 
                 console.log(fuzz.get(name));
+                console.log(fuzz.get(name)[ 0 ][ 1 ]);
 
-                for (let key in json) {
+                const key = fuzz.get(name)[ 0 ][ 1 ];
 
-                    console.log(key);
+                let pages: number = 0;
 
-                    const split = key.split(/[\/.]/);
+                if (json[ key ].length / Number(process.env.DOCSBOT_LIMIT_CHARS) > 0) {
 
-                    if (split[ split.length - 1 ] == name) {
+                    pages = Math.floor(json[ key ].length / Number(process.env.DOCSBOT_LIMIT_CHARS)) - 1;
 
-                        let pages: number = 0;
+                } else {
 
-                        if (json[ key ].length / Number(process.env.DOCSBOT_LIMIT_CHARS) > 0) {
-
-                            pages = Math.floor(json[ key ].length / Number(process.env.DOCSBOT_LIMIT_CHARS)) - 1;
-
-                        } else {
-
-                            pages = 0;
-
-                        }
-
-                        return {
-
-                            key,
-                            name,
-                            doc: json[ key ],
-                            pages
-
-                        };
-
-                    }
+                    pages = 0;
 
                 }
+
+                return {
+
+                    key,
+                    name,
+                    doc: json[ key ],
+                    pages
+
+                };
 
             }
 
