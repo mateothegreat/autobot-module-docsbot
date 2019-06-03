@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import { Doc } from './Doc';
 
-const fuzzyset = require('fuzzyset.js');
+const FuzzySet = require('fuzzyset.js');
 
 export class JSONUtil {
 
@@ -13,7 +13,9 @@ export class JSONUtil {
 
                 const json = require(`${ process.env.DOCSBOT_SAVE_PATH }/${ filename }.json`);
 
-                console.log(fuzzyset.get(name));
+                const fuzz = new FuzzySet(Object.keys(json));
+
+                console.log(fuzz.get(name));
 
                 for (let key in json) {
 
