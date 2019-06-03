@@ -81,10 +81,10 @@ export class JavascriptCommand extends CommandBase {
 
                 console.log(reaction);
 
-                // @ts-ignore
-                await message.clearReactions();
-
                 if (reaction.users.size === 2 && reaction.me) {
+
+                    // @ts-ignore
+                    await message.clearReactions();
 
                     if (reaction.emoji.name === '⏩') {
 
