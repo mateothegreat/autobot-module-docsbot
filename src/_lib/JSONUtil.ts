@@ -41,8 +41,6 @@ export class JSONUtil {
 
             for (let key in json) {
 
-                console.log(key);
-
                 const split = key.split(/[\/.]/);
 
                 terms.push(split[ split.length - 1 ]);
