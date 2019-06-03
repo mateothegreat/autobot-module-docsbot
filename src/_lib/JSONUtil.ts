@@ -12,21 +12,21 @@ export class JSONUtil {
 
                 const split = key.split(/[\/.]/);
 
-                let pages: number = 0;
-
-                console.log(split[ split.length - 1 ].length, split[ split.length - 1 ].length / Number(process.env.DOCSBOT_LIMIT_CHARS));
-
-                if (split[ split.length - 1 ].length / Number(process.env.DOCSBOT_LIMIT_CHARS) > 0) {
-
-                    pages = Math.ceil(split[ split.length - 1 ].length / Number(process.env.DOCSBOT_LIMIT_CHARS));
-
-                } else {
-
-                    pages = 0;
-
-                }
-
                 if (split[ split.length - 1 ] == name) {
+
+                    let pages: number = 0;
+
+                    console.log(split[ split.length - 1 ].length, split[ split.length - 1 ].length / Number(process.env.DOCSBOT_LIMIT_CHARS));
+
+                    if (split[ split.length - 1 ].length / Number(process.env.DOCSBOT_LIMIT_CHARS) > 0) {
+
+                        pages = Math.ceil(split[ split.length - 1 ].length / Number(process.env.DOCSBOT_LIMIT_CHARS));
+
+                    } else {
+
+                        pages = 0;
+
+                    }
 
                     return {
 
