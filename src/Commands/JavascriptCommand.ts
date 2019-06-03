@@ -112,12 +112,12 @@ export class JavascriptCommand extends CommandBase {
             const emojiNext = await message.react('⏩');
             // @ts-ignore
             let collector = message.createReactionCollector(filter, { time: 105000 });
-
-            setInterval(() => {
-
-                emojiNext.fetchUsers();
-
-            }, 1000);
+            //
+            // setInterval(() => {
+            //
+            //     emojiNext.fetchUsers();
+            //
+            // }, 1000);
 
             // @ts-ignore
             collector.on('collect', async (reaction, collector) => {
@@ -134,7 +134,7 @@ export class JavascriptCommand extends CommandBase {
                         await reaction.remove();
 
                         // @ts-ignore
-                        await message.react('⏩');
+                        // await message.react('⏩');
 
                     } else if (reaction.emoji.name === '⏪') {
 
@@ -146,7 +146,7 @@ export class JavascriptCommand extends CommandBase {
                             await reaction.remove();
 
                             // @ts-ignore
-                            await message.react('⏪');
+                            // await message.react('⏪');
 
                         }
 
