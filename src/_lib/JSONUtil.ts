@@ -18,7 +18,7 @@ export class JSONUtil {
 
                     if (json[ key ].length / Number(process.env.DOCSBOT_LIMIT_CHARS) > 0) {
 
-                        pages = Math.floor(json[ key ].length / Number(process.env.DOCSBOT_LIMIT_CHARS)) - 1;
+                        pages = Math.floor(json[ key ].length / Number(process.env.DOCSBOT_LIMIT_CHARS));
 
                     } else {
 

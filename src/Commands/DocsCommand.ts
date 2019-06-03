@@ -109,7 +109,9 @@ export class DocsCommand extends CommandBase {
                             currentPage++;
                             reaction.message.edit(DocsCommand.getEmbed(result, currentPage));
 
-                            DocsCommand.addReactions(message, currentPage > 0, currentPage < result.pages);
+                            console.log(currentPage, result.pages);
+
+                            DocsCommand.addReactions(message, currentPage > 0, currentPage < (result.pages - 1));
 
                         } else if (reaction.emoji.name === '⏪') {
 
