@@ -16,11 +16,9 @@ export class JSONUtil {
 
                     let pages: number = 0;
 
-                    console.log(json[ key ].length, json[ key ].length / Number(process.env.DOCSBOT_LIMIT_CHARS));
-
                     if (json[ key ].length / Number(process.env.DOCSBOT_LIMIT_CHARS) > 0) {
 
-                        pages = Math.ceil(json[ key ].length / Number(process.env.DOCSBOT_LIMIT_CHARS));
+                        pages = Math.floor(json[ key ].length / Number(process.env.DOCSBOT_LIMIT_CHARS));
 
                     } else {
 
