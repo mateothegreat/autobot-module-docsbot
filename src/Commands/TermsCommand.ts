@@ -41,9 +41,15 @@ export class TermsCommand extends CommandBase {
 
         if (result) {
 
-            command.obj.channel.send(new RichEmbed().setTitle(`devdocs searchable for "${ command.arguments[ 0 ].name }"`)
-                                                    .setColor(3447003)
-                                                    .setDescription(result.join(', ').substring(0, 2048)));
+            const str = result.join(', ');
+
+            for (let i = 0; i < str.length; i + 2048) {
+
+                command.obj.channel.send(new RichEmbed().setTitle(`devdocs searchable for "${ command.arguments[ 0 ].name }"`)
+                                                        .setColor(3447003)
+                                                        .setDescription(result.join(', ').substring(i, 2048)));
+
+            }
 
         } else {
 
