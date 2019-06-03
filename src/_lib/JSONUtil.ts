@@ -10,8 +10,6 @@ export class JSONUtil {
 
             for (let key in json) {
 
-                console.log(key);
-
                 const split = key.split(/[\/.]/);
 
                 if (split[ split.length - 1 ] == name) {
@@ -20,7 +18,8 @@ export class JSONUtil {
 
                         key,
                         name,
-                        doc: json[ key ]
+                        doc: json[ key ],
+                        pages: Math.ceil(split[ split.length - 1 ].length / Number(process.env.DOCSBOT_LIMIT_CHARS))
 
                     };
 

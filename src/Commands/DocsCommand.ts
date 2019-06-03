@@ -22,18 +22,27 @@ export class DocsCommand extends CommandBase {
 
     }
 
-    public static async addReactions(message: any) {
+    public static async addReactions(message: any, showPrev: boolean, showNext: boolean) {
 
         // @ts-ignore
         await message.clearReactions();
 
         // @ts-ignore
         await message.react('🗑');
-        // @ts-ignore
-        await message.react('⏪');
-        // @ts-ignore
-        await message.react('⏩');
-        // @ts-ignore
+
+        if (showPrev) {
+
+            // @ts-ignore
+            await message.react('⏪');
+
+        }
+
+        if (showNext) {
+
+            // @ts-ignore
+            await message.react('⏩');
+
+        }
 
     }
 
@@ -85,7 +94,7 @@ export class DocsCommand extends CommandBase {
 
                 };
 
-                DocsCommand.addReactions(message);
+                DocsCommand.addReactions(message, currentPage > 1, currentPage < result.pages);
 
                 // @ts-ignore
                 let collector = message.createReactionCollector(filter, { time: 999999 });
