@@ -45,6 +45,10 @@ export class DocsCommand extends CommandBase {
     public constructor(config: CommandConfig) {
 
         super(config);
+        this.config = config;
+
+        console.log('config', config);
+
 
     }
 
