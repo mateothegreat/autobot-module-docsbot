@@ -39,11 +39,11 @@ export class CheatShCommand extends CommandBase {
 
         const result = await axios(`https://cheat.sh/${ command.arguments[ 0 ].name }`);
 
-        if (result) {
+        if (result.data) {
 
             command.obj.channel.send(new RichEmbed().setTitle('cheat.sh')
                                                     .setColor(3447003)
-                                                    .setDescription("```md\n" + result + "```")
+                                                    .setDescription("```md\n" + result.data + "```")
                                                     .setURL(`https://cheat.sh/${ command.arguments[ 0 ].name }`));
 
         } else {
