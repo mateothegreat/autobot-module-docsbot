@@ -1,7 +1,7 @@
-import { Command, CommandBase, CommandParser } from '@autobot/common';
-import { RichEmbed }                           from 'discord.js';
-import { Doc }                                 from '../_lib/Doc';
-import { JSONUtil }                            from '../_lib/JSONUtil';
+import { Command, CommandBase, CommandConfig, CommandParser } from '@autobot/common';
+import { RichEmbed }                                          from 'discord.js';
+import { Doc }                                                from '../_lib/Doc';
+import { JSONUtil }                                           from '../_lib/JSONUtil';
 
 const h2m = require('h2m');
 
@@ -41,6 +41,12 @@ export class DocsCommand extends CommandBase {
      * Name of the language -- supplied by parent class i.e.: javascript, kotlin, etc.
      */
     public name: string;
+
+    public constructor(config: CommandConfig) {
+
+        super(config);
+
+    }
 
     /**
      * Called when a command matches config.name.
