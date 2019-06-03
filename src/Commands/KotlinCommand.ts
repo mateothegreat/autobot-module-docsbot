@@ -1,7 +1,7 @@
 import { Event }       from '@autobot/common';
 import { DocsCommand } from './DocsCommand';
 
-export class JavascriptCommand extends DocsCommand {
+export class KotlinCommand extends DocsCommand {
 
     public constructor() {
 
@@ -11,14 +11,14 @@ export class JavascriptCommand extends DocsCommand {
         super({
 
             event: Event.MESSAGE,
-            name: '!js',
+            name: '!kt',
             group: 'docs',
             roles: [
 
                 process.env.DOCSBOT_ADMIN_ROLE_NAME
 
             ],
-            description: '!js <search term>'
+            description: '!kt <search term>'
 
         });
 
