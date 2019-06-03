@@ -43,7 +43,11 @@ export class JSONUtil {
 
                 const split = key.split(/[\/.]/);
 
-                terms.push(split[ split.length - 1 ]);
+                if (terms.indexOf(split[ split.length - 1 ]) === -1) {
+
+                    terms.push(split[ split.length - 1 ]);
+
+                }
 
             }
 
