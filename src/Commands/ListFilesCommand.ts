@@ -37,7 +37,7 @@ export class ListFilesCommand extends CommandBase {
      */
     public async run(command: CommandParser) {
 
-        const result = fs.readdirSync('/assets/photos/');
+        const result = fs.readdirSync(process.env.DOCSBOT_SAVE_PATH);
 
         console.log(result);
 

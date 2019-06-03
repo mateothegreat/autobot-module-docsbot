@@ -1,3 +1,4 @@
+import * as fs from 'fs';
 import { Doc } from './Doc';
 
 export class JSONUtil {
@@ -6,36 +7,40 @@ export class JSONUtil {
 
         if (filename.match(/^[a-z0-9-~._]+$/i)) {
 
-            const json = require(`${ process.env.DOCSBOT_SAVE_PATH }/${ filename }.json`);
+            if (fs.existsSync(`${ process.env.DOCSBOT_SAVE_PATH }/${ filename }.json`)) {
 
-            for (let key in json) {
+                const json = require(`${ process.env.DOCSBOT_SAVE_PATH }/${ filename }.json`);
 
-                console.log(key);
+                for (let key in json) {
 
-                const split = key.split(/[\/.]/);
+                    console.log(key);
 
-                if (split[ split.length - 1 ] == name) {
+                    const split = key.split(/[\/.]/);
 
-                    let pages: number = 0;
+                    if (split[ split.length - 1 ] == name) {
 
-                    if (json[ key ].length / Number(process.env.DOCSBOT_LIMIT_CHARS) > 0) {
+                        let pages: number = 0;
 
-                        pages = Math.floor(json[ key ].length / Number(process.env.DOCSBOT_LIMIT_CHARS)) - 1;
+                        if (json[ key ].length / Number(process.env.DOCSBOT_LIMIT_CHARS) > 0) {
 
-                    } else {
+                            pages = Math.floor(json[ key ].length / Number(process.env.DOCSBOT_LIMIT_CHARS)) - 1;
 
-                        pages = 0;
+                        } else {
+
+                            pages = 0;
+
+                        }
+
+                        return {
+
+                            key,
+                            name,
+                            doc: json[ key ],
+                            pages
+
+                        };
 
                     }
-
-                    return {
-
-                        key,
-                        name,
-                        doc: json[ key ],
-                        pages
-
-                    };
 
                 }
 
@@ -49,23 +54,27 @@ export class JSONUtil {
 
         if (filename.match(/^[a-z0-9-~._]+$/i)) {
 
-            const terms = [];
-            const json = require(`${ process.env.DOCSBOT_SAVE_PATH }/${ filename }.json`);
+            if (fs.existsSync(`${ process.env.DOCSBOT_SAVE_PATH }/${ filename }.json`)) {
 
-            for (let key in json) {
+                const terms = [];
+                const json = require(`${ process.env.DOCSBOT_SAVE_PATH }/${ filename }.json`);
 
-                const split = key.split(/[\/.]/);
+                for (let key in json) {
 
-                if (terms.indexOf(split[ split.length - 1 ]) === -1) {
+                    const split = key.split(/[\/.]/);
 
-                    terms.push(split[ split.length - 1 ]);
+                    if (terms.indexOf(split[ split.length - 1 ]) === -1) {
+
+                        terms.push(split[ split.length - 1 ]);
+
+                    }
 
                 }
 
+                return terms;
+
             }
-
-            return terms;
-
+            
         }
 
     }
