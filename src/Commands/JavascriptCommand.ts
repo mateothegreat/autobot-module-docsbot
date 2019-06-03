@@ -67,14 +67,14 @@ export class JavascriptCommand extends CommandBase {
             };
 
             // @ts-ignore
-            const emojiTrash = await message.react('🗑');
+            await message.react('🗑');
             // @ts-ignore
-            const emojiPrevious = await message.react('⏪');
+            await message.react('⏪');
             // @ts-ignore
-            const emojiNext = await message.react('⏩');
+            await message.react('⏩');
             // @ts-ignore
 
-            let collector = message.createReactionCollector(filter, { time: 105000 });
+            let collector = message.createReactionCollector(filter, { time: 999999 });
 
             // @ts-ignore
             collector.on('collect', async (reaction, collector) => {
@@ -86,17 +86,18 @@ export class JavascriptCommand extends CommandBase {
                     // @ts-ignore
                     await message.clearReactions();
 
+                    // @ts-ignore
+                    await message.react('🗑');
+                    // @ts-ignore
+                    await message.react('⏪');
+                    // @ts-ignore
+                    await message.react('⏩');
+                    // @ts-ignore
+
                     if (reaction.emoji.name === '⏩') {
 
                         currentPage++;
                         reaction.message.edit(JavascriptCommand.getEmbed(result, currentPage));
-
-                        // await reaction.remove();
-
-                        // @ts-ignore
-
-                        // @ts-ignore
-                        await message.react('⏩');
 
                     } else if (reaction.emoji.name === '⏪') {
 
@@ -104,11 +105,6 @@ export class JavascriptCommand extends CommandBase {
 
                             currentPage--;
                             reaction.message.edit(JavascriptCommand.getEmbed(result, currentPage));
-
-                            await reaction.remove();
-
-                            // @ts-ignore
-                            await message.react('⏪');
 
                         }
 
@@ -121,15 +117,6 @@ export class JavascriptCommand extends CommandBase {
                 }
 
             });
-
-            // }, 3000);
-
-            // @ts-ignore
-            // collector.on('end', collected => {
-            //
-            //     console.log(`collected ${ collected.size } reactions`);
-            //
-            // });
 
         } else {
 
