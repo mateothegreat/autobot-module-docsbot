@@ -65,27 +65,27 @@ export class JavascriptCommand extends CommandBase {
                 return [ '🗑', '⏪', '⏩' ].includes(reaction.emoji.name);
 
             };
-
-            command.obj.client.on('messageUpdate', async (reaction, user) => {
-
-                    console.log(reaction);
-                    console.log(user);
-
-                    // if (!reaction.users.first().bot) {
-                    //     console.log(reaction);
-                    //     console.log(reaction.users);
-                    //
-                    //
-                    //     await reaction.remove();
-                    //     // @ts-ignore
-                    //     await message.react('⏩');
-                    //
-                    //     if (reaction.emoji.name === "✅") {
-                    //     }
-
-                    // }
-                }
-            );
+            //
+            // command.obj.client.on('messageUpdate', async (reaction, user) => {
+            //
+            //         console.log(reaction);
+            //         console.log(user);
+            //
+            //         // if (!reaction.users.first().bot) {
+            //         //     console.log(reaction);
+            //         //     console.log(reaction.users);
+            //         //
+            //         //
+            //         //     await reaction.remove();
+            //         //     // @ts-ignore
+            //         //     await message.react('⏩');
+            //         //
+            //         //     if (reaction.emoji.name === "✅") {
+            //         //     }
+            //
+            //         // }
+            //     }
+            // );
 
             // @ts-ignore
             let collector = message.createReactionCollector(filter, { max: 1, maxEmojis: 3, time: 105000 });
@@ -106,15 +106,14 @@ export class JavascriptCommand extends CommandBase {
             // });
 
             // @ts-ignore
-            //
-            collector.on('collect', (reaction, collector) => {
+            await message.react('🗑');
+            // @ts-ignore
+            await message.react('⏪');
+            // @ts-ignore
+            await message.react('⏩');
 
-                // @ts-ignore
-                await message.react('🗑');
-                // @ts-ignore
-                await message.react('⏪');
-                // @ts-ignore
-                await message.react('⏩');
+            // @ts-ignore
+            collector.on('collect', async (reaction, collector) => {
 
                 reaction.remove();
 
