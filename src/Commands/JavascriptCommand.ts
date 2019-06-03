@@ -122,7 +122,7 @@ export class JavascriptCommand extends CommandBase {
             // @ts-ignore
             collector.on('collect', async (reaction, collector) => {
 
-                console.log(reaction.users);
+                console.log(reaction);
 
                 if (reaction.users.size === 2 && reaction.users.first().id === '584778107094040596') {
 
