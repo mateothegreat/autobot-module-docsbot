@@ -122,11 +122,11 @@ export class JavascriptCommand extends CommandBase {
             // @ts-ignore
             collector.on('collect', async (reaction, collector) => {
 
-                reaction.remove();
+                if (reaction.users.size > 1) {
+                    reaction.remove();
 
-                console.log(collector);
 
-                console.log(reaction.users.last());
+                }
                 //     //
                 //     // if (reaction.emoji.name === '⏩') {
                 //     //     console.log(2);
