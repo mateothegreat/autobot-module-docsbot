@@ -14,8 +14,8 @@ export class JSONUtil {
             for (let key in json) {
 
                 console.log(key);
-                
-                const split = key.split('/');
+
+                const split = key.split(/[\/.]/);
 
                 if (split[ split.length - 1 ] == name) {
 
