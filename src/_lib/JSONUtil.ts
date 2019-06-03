@@ -1,13 +1,10 @@
-import { Logger } from '@autobot/common';
-import { Doc }    from './Doc';
+import { Doc } from './Doc';
 
 export class JSONUtil {
 
     public static getByName(filename: string, name: string): Doc {
 
         if (filename.match(/^[a-z0-9-]+$/i)) {
-
-            Logger.log(`${ process.env.DOCSBOT_SAVE_PATH }/${ filename }.json`);
 
             const json = require(`${ process.env.DOCSBOT_SAVE_PATH }/${ filename }.json`);
 
@@ -30,6 +27,16 @@ export class JSONUtil {
                 }
 
             }
+
+        }
+
+    }
+
+    public static getTerms(filename: string): Array<string> {
+
+        if (filename.match(/^[a-z0-9-]+$/i)) {
+
+            return Object.keys(require(`${ process.env.DOCSBOT_SAVE_PATH }/${ filename }.json`));
 
         }
 
