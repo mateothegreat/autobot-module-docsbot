@@ -36,7 +36,20 @@ export class JSONUtil {
 
         if (filename.match(/^[a-z0-9-]+$/i)) {
 
-            return Object.keys(require(`${ process.env.DOCSBOT_SAVE_PATH }/${ filename }.json`));
+            const terms = [];
+            const json = require(`${ process.env.DOCSBOT_SAVE_PATH }/${ filename }.json`);
+
+            for (let key in json) {
+
+                console.log(key);
+
+                const split = key.split(/[\/.]/);
+
+                terms.push(split[ split.length - 1 ]);
+
+            }
+
+            return terms;
 
         }
 
