@@ -109,7 +109,7 @@ export class DocsCommand extends CommandBase {
                             currentPage++;
                             reaction.message.edit(DocsCommand.getEmbed(result, currentPage));
 
-                            DocsCommand.addReactions(message);
+                            DocsCommand.addReactions(message, currentPage > 1, currentPage < result.pages);
 
                         } else if (reaction.emoji.name === '⏪') {
 
@@ -118,7 +118,7 @@ export class DocsCommand extends CommandBase {
                                 currentPage--;
                                 reaction.message.edit(DocsCommand.getEmbed(result, currentPage));
 
-                                DocsCommand.addReactions(message);
+                                DocsCommand.addReactions(message, currentPage > 1, currentPage < result.pages);
 
                             }
 
