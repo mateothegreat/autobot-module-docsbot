@@ -15,6 +15,7 @@ export class JSONUtil {
 
                 const fuzz = new FuzzySet(Object.keys(json));
 
+                console.log(name);
                 console.log(fuzz.get(name));
                 console.log(fuzz.get(name)[ 0 ][ 1 ]);
 
