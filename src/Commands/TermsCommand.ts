@@ -45,7 +45,7 @@ export class TermsCommand extends CommandBase {
 
             for (let i = 0; i < str.length; i += 2048) {
 
-                command.obj.channel.send(new RichEmbed().setTitle(`devdocs searchable for "${ command.arguments[ 0 ].name }"`)
+                command.obj.channel.send(new RichEmbed().setTitle(`devdocs searchable languages`)
                                                         .setColor(3447003)
                                                         .setDescription(result.join(', ').substring(i, 2048)));
 

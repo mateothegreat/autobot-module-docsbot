@@ -132,9 +132,9 @@ export class DocsCommand extends CommandBase {
 
             } else {
 
-                command.obj.channel.send(new RichEmbed().setTitle('devdocs')
-                                                        .setColor(3447003)
-                                                        .setDescription(`Could not find any results for "${ command.arguments[ 0 ].name }"`));
+                // command.obj.channel.send(new RichEmbed().setTitle('devdocs')
+                //                                         .setColor(3447003)
+                //                                         .setDescription(`Could not find any results for "${ command.arguments[ 0 ].name }"`));
 
             }
 
