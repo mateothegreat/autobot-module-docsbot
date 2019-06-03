@@ -59,14 +59,7 @@ export class JavascriptCommand extends CommandBase {
 
             const message = await command.obj.channel.send(JavascriptCommand.getEmbed(result, currentPage));
 
-            // @ts-ignore
-            await message.react('🗑');
-            // @ts-ignore
-            await message.react('⏪');
-            // @ts-ignore
-            await message.react('⏩');
-
-            const filter = (reaction: any, user: any) => {
+            filter = (reaction: any, user: any) => {
 
                 // @ts-ignore
                 return [ '🗑', '⏪', '⏩' ].includes(reaction.emoji.name);
@@ -95,63 +88,70 @@ export class JavascriptCommand extends CommandBase {
             );
 
             // @ts-ignore
-            // let collector = message.createReactionCollector(filter, { max: 1, maxEmojis: 3, time: 105000 });
-            //
+            let collector = message.createReactionCollector(filter, { max: 1, maxEmojis: 3, time: 105000 });
+
             // setTimeout(() => {
+
+
+            // @ts-ignore
+            // message.awaitReactions(filter, { max: 1, time: 9999, errors: [ 'time' ] })
+            //        // @ts-ignore
+            //        .then(async (collected) => {
+            //            // logic
             //
+            //            console.log(123);
+            //            console.log(collected);
             //
-            //     // @ts-ignore
-            //     message.awaitReactions(filter, { max: 1, time: 9999, errors: [ 'time' ] })
-            //            // @ts-ignore
-            //            .then(async (collected) => {
-            //                // logic
+            //        }).catch(() => {
+            // });
+
+            // @ts-ignore
             //
-            //                console.log(123);
-            //                console.log(collected);
-            //
-            //            }).catch(() => {
-            //     });
-            //
-            //     // @ts-ignore
-            //     //
-            //     // collector.on('collect', (reaction, collector) => {
-            //     //
-            //     //     reaction.remove();
-            //     //
-            //     //     console.log(collector);
-            //     //
-            //     //     console.log(reaction.users.last());
-            //     //     //
-            //     //     // if (reaction.emoji.name === '⏩') {
-            //     //     //     console.log(2);
-            //     //     //
-            //     //     //     currentPage++;
-            //     //     //
-            //     //     //     reaction.remove();
-            //     //     //
-            //     //     //     // reaction.message.edit(JavascriptCommand.getEmbed(result, currentPage));
-            //     //     //
-            //     //     //
-            //     //     // } else if (reaction.emoji.name === '⏪') {
-            //     //     //
-            //     //     //     if (currentPage > 0) {
-            //     //     //
-            //     //     //         currentPage--;
-            //     //     //
-            //     //     //         reaction.remove();
-            //     //     //
-            //     //     //         // reaction.message.edit(JavascriptCommand.getEmbed(result, currentPage));
-            //     //     //
-            //     //     //     }
-            //     //     //
-            //     //     // } else if (reaction.emoji.name === '🗑') {
-            //     //     //
-            //     //     //     reaction.message.delete();
-            //     //     //
-            //     //     // }
-            //     //
-            //     // });
-            //
+            collector.on('collect', (reaction, collector) => {
+
+                // @ts-ignore
+                await message.react('🗑');
+                // @ts-ignore
+                await message.react('⏪');
+                // @ts-ignore
+                await message.react('⏩');
+
+                reaction.remove();
+
+                console.log(collector);
+
+                console.log(reaction.users.last());
+                //     //
+                //     // if (reaction.emoji.name === '⏩') {
+                //     //     console.log(2);
+                //     //
+                //     //     currentPage++;
+                //     //
+                //     //     reaction.remove();
+                //     //
+                //     //     // reaction.message.edit(JavascriptCommand.getEmbed(result, currentPage));
+                //     //
+                //     //
+                //     // } else if (reaction.emoji.name === '⏪') {
+                //     //
+                //     //     if (currentPage > 0) {
+                //     //
+                //     //         currentPage--;
+                //     //
+                //     //         reaction.remove();
+                //     //
+                //     //         // reaction.message.edit(JavascriptCommand.getEmbed(result, currentPage));
+                //     //
+                //     //     }
+                //     //
+                //     // } else if (reaction.emoji.name === '🗑') {
+                //     //
+                //     //     reaction.message.delete();
+                //     //
+                //     // }
+                //
+            });
+
             // }, 3000);
 
             // @ts-ignore
