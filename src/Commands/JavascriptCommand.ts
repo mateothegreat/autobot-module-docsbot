@@ -65,44 +65,6 @@ export class JavascriptCommand extends CommandBase {
                 return [ '🗑', '⏪', '⏩' ].includes(reaction.emoji.name);
 
             };
-            //
-            // command.obj.client.on('messageUpdate', async (reaction, user) => {
-            //
-            //         console.log(reaction);
-            //         console.log(user);
-            //
-            //         // if (!reaction.users.first().bot) {
-            //         //     console.log(reaction);
-            //         //     console.log(reaction.users);
-            //         //
-            //         //
-            //         //     await reaction.remove();
-            //         //     // @ts-ignore
-            //         //     await message.react('⏩');
-            //         //
-            //         //     if (reaction.emoji.name === "✅") {
-            //         //     }
-            //
-            //         // }
-            //     }
-            // );
-
-            // @ts-ignore
-
-            // setTimeout(() => {
-
-
-            // @ts-ignore
-            // message.awaitReactions(filter, { max: 1, time: 9999, errors: [ 'time' ] })
-            //        // @ts-ignore
-            //        .then(async (collected) => {
-            //            // logic
-            //
-            //            console.log(123);
-            //            console.log(collected);
-            //
-            //        }).catch(() => {
-            // });
 
             // @ts-ignore
             const emojiTrash = await message.react('🗑');
@@ -111,30 +73,28 @@ export class JavascriptCommand extends CommandBase {
             // @ts-ignore
             const emojiNext = await message.react('⏩');
             // @ts-ignore
+
             let collector = message.createReactionCollector(filter, { time: 105000 });
-            //
-            // setInterval(() => {
-            //
-            //     emojiNext.fetchUsers();
-            //
-            // }, 1000);
 
             // @ts-ignore
             collector.on('collect', async (reaction, collector) => {
 
                 console.log(reaction);
 
-                if (reaction.users.size === 2 && reaction.users.first().id === '584778107094040596') {
+                if (reaction.users.size === 2) {
 
                     if (reaction.emoji.name === '⏩') {
 
                         currentPage++;
                         reaction.message.edit(JavascriptCommand.getEmbed(result, currentPage));
 
-                        await reaction.remove();
+                        // await reaction.remove();
 
                         // @ts-ignore
-                        // await message.react('⏩');
+                        await message.clearReactions();
+
+                        // @ts-ignore
+                        await message.react('⏩');
 
                     } else if (reaction.emoji.name === '⏪') {
 
@@ -146,7 +106,7 @@ export class JavascriptCommand extends CommandBase {
                             await reaction.remove();
 
                             // @ts-ignore
-                            // await message.react('⏪');
+                            await message.react('⏪');
 
                         }
 
