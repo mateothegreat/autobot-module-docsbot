@@ -129,27 +129,24 @@ export class JavascriptCommand extends CommandBase {
                     if (reaction.emoji.name === '⏩') {
 
                         currentPage++;
+                        reaction.message.edit(JavascriptCommand.getEmbed(result, currentPage));
 
-                        reaction.remove();
+                        await reaction.remove();
 
                         // @ts-ignore
                         await message.react('⏩');
-
-                        reaction.message.edit(JavascriptCommand.getEmbed(result, currentPage));
-
 
                     } else if (reaction.emoji.name === '⏪') {
 
                         if (currentPage > 0) {
 
                             currentPage--;
+                            reaction.message.edit(JavascriptCommand.getEmbed(result, currentPage));
 
-                            reaction.remove();
+                            await reaction.remove();
 
                             // @ts-ignore
                             await message.react('⏪');
-
-                            reaction.message.edit(JavascriptCommand.getEmbed(result, currentPage));
 
                         }
 
