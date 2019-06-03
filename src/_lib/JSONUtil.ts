@@ -13,6 +13,8 @@ export class JSONUtil {
 
                 const json = require(`${ process.env.DOCSBOT_SAVE_PATH }/${ filename }.json`);
 
+                console.log(Object.keys(json));
+
                 const fuzz = new FuzzySet(Object.keys(json));
 
                 console.log(name);
