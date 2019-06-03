@@ -70,7 +70,9 @@ export class DocsCommand extends CommandBase {
 
         console.log(command);
 
-        const result = JSONUtil.getByName('javascript', command.arguments[ 0 ].name);
+        const lang = command.command.split('#')[ 1 ];
+
+        const result = JSONUtil.getByName(lang, command.arguments[ 0 ].name);
 
         if (result) {
 
@@ -127,7 +129,7 @@ export class DocsCommand extends CommandBase {
 
             command.obj.channel.send(new RichEmbed().setTitle('devdocs')
                                                     .setColor(3447003)
-                                                    .setDescription(`Could not find any results for "${ command.arguments[ 0 ].name }`));
+                                                    .setDescription(`Could not find any results for "${ command.arguments[ 0 ].name }"`));
 
         }
 
