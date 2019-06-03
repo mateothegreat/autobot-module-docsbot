@@ -22,7 +22,7 @@ export class JavascriptCommand extends CommandBase {
 
     }
 
-    public static addReactions(message: any): void {
+    public static async addReactions(message: any): void {
 
         // @ts-ignore
         await message.clearReactions();
@@ -92,7 +92,6 @@ export class JavascriptCommand extends CommandBase {
                 console.log(reaction);
 
                 if (reaction.users.size === 2 && reaction.me) {
-
 
                     if (reaction.emoji.name === '⏩') {
 
