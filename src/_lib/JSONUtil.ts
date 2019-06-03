@@ -1,4 +1,5 @@
-import { Doc } from './Doc';
+import { Logger } from '@autobot/common';
+import { Doc }    from './Doc';
 
 export class JSONUtil {
 
@@ -6,10 +7,14 @@ export class JSONUtil {
 
         if (filename.match(/^[a-z0-9-]+$/i)) {
 
+            Logger.log(`${ process.env.DOCSBOT_SAVE_PATH }/${ filename }.json`);
+
             const json = require(`${ process.env.DOCSBOT_SAVE_PATH }/${ filename }.json`);
 
             for (let key in json) {
 
+                console.log(key);
+                
                 const split = key.split('/');
 
                 if (split[ split.length - 1 ] == name) {

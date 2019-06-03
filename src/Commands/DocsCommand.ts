@@ -52,7 +52,7 @@ export class DocsCommand extends CommandBase {
                 process.env.DOCSBOT_ADMIN_ROLE_NAME
 
             ],
-            description: '#js <search term>'
+            description: '#javascript <search term>'
 
         });
 
@@ -68,68 +68,68 @@ export class DocsCommand extends CommandBase {
 
         let currentPage: number = 0;
 
-        console.log(command);
+        const lang = command.command.split('#');
 
-        const lang = command.command.split('#')[ 1 ];
+        if (lang[ 1 ]) {
 
-        const result = JSONUtil.getByName(lang, command.arguments[ 0 ].name);
+            const result = JSONUtil.getByName(lang[ 1 ], command.arguments[ 0 ].name);
 
-        if (result) {
+            if (result) {
 
-            const message = await command.obj.channel.send(DocsCommand.getEmbed(result, currentPage));
+                const message = await command.obj.channel.send(DocsCommand.getEmbed(result, currentPage));
 
-            const filter = (reaction: any, user: any) => {
+                const filter = (reaction: any, user: any) => {
+
+                    // @ts-ignore
+                    return [ '🗑', '⏪', '⏩' ].includes(reaction.emoji.name);
+
+                };
+
+                DocsCommand.addReactions(message);
 
                 // @ts-ignore
-                return [ '🗑', '⏪', '⏩' ].includes(reaction.emoji.name);
+                let collector = message.createReactionCollector(filter, { time: 999999 });
 
-            };
+                // @ts-ignore
+                collector.on('collect', async (reaction, collector) => {
 
-            DocsCommand.addReactions(message);
+                    if (reaction.users.size === 2 && reaction.me) {
 
-            // @ts-ignore
-            let collector = message.createReactionCollector(filter, { time: 999999 });
+                        if (reaction.emoji.name === '⏩') {
 
-            // @ts-ignore
-            collector.on('collect', async (reaction, collector) => {
-
-                console.log(reaction);
-
-                if (reaction.users.size === 2 && reaction.me) {
-
-                    if (reaction.emoji.name === '⏩') {
-
-                        currentPage++;
-                        reaction.message.edit(DocsCommand.getEmbed(result, currentPage));
-
-                        DocsCommand.addReactions(message);
-
-                    } else if (reaction.emoji.name === '⏪') {
-
-                        if (currentPage > 0) {
-
-                            currentPage--;
+                            currentPage++;
                             reaction.message.edit(DocsCommand.getEmbed(result, currentPage));
 
                             DocsCommand.addReactions(message);
 
+                        } else if (reaction.emoji.name === '⏪') {
+
+                            if (currentPage > 0) {
+
+                                currentPage--;
+                                reaction.message.edit(DocsCommand.getEmbed(result, currentPage));
+
+                                DocsCommand.addReactions(message);
+
+                            }
+
+                        } else if (reaction.emoji.name === '🗑') {
+
+                            reaction.message.delete();
+
                         }
-
-                    } else if (reaction.emoji.name === '🗑') {
-
-                        reaction.message.delete();
 
                     }
 
-                }
+                });
 
-            });
+            } else {
 
-        } else {
+                command.obj.channel.send(new RichEmbed().setTitle('devdocs')
+                                                        .setColor(3447003)
+                                                        .setDescription(`Could not find any results for "${ command.arguments[ 0 ].name }"`));
 
-            command.obj.channel.send(new RichEmbed().setTitle('devdocs')
-                                                    .setColor(3447003)
-                                                    .setDescription(`Could not find any results for "${ command.arguments[ 0 ].name }"`));
+            }
 
         }
 
