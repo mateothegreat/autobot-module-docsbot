@@ -45,7 +45,7 @@ export class ListFilesCommand extends CommandBase {
 
             command.obj.channel.send(new RichEmbed().setTitle(`devdocs searchable for "${ command.arguments[ 0 ].name }"`)
                                                     .setColor(3447003)
-                                                    .setDescription(result.join(', ')));
+                                                    .setDescription(result.join(', ').replace('.json', '')));
 
         } else {
 
