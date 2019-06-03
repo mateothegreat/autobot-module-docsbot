@@ -45,7 +45,7 @@ export class DocsCommand extends CommandBase {
         super({
 
             event: Event.MESSAGE,
-            name: '#',
+            name: '*',
             group: 'docs',
             roles: [
 
