@@ -43,7 +43,7 @@ export class ListFilesCommand extends CommandBase {
 
             command.obj.channel.send(new RichEmbed().setTitle(`devdocs searchable languages list`)
                                                     .setColor(3447003)
-                                                    .setDescription(result.join(', ').replace('.json', '')));
+                                                    .setDescription(result.join(', ').replace(/\.json/g, '')));
 
         } else {
 
