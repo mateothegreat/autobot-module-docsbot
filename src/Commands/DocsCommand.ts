@@ -45,14 +45,14 @@ export class DocsCommand extends CommandBase {
         super({
 
             event: Event.MESSAGE,
-            name: '!js',
+            name: '#',
             group: 'docs',
             roles: [
 
                 process.env.DOCSBOT_ADMIN_ROLE_NAME
 
             ],
-            description: '!js <search term>'
+            description: '#js <search term>'
 
         });
 
@@ -67,6 +67,8 @@ export class DocsCommand extends CommandBase {
     public async run(command: CommandParser) {
 
         let currentPage: number = 0;
+
+        console.log(command);
 
         const result = JSONUtil.getByName('javascript', command.arguments[ 0 ].name);
 
