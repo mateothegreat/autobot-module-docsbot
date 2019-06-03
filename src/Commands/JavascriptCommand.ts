@@ -122,7 +122,9 @@ export class JavascriptCommand extends CommandBase {
             // @ts-ignore
             collector.on('collect', async (reaction, collector) => {
 
-                if (reaction.users.size > 1) {
+                console.log(reaction.users);
+
+                if (reaction.users.size === 2) {
                     reaction.remove();
 
 
