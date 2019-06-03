@@ -94,7 +94,7 @@ export class DocsCommand extends CommandBase {
 
                 };
 
-                DocsCommand.addReactions(message, currentPage > 1, currentPage < result.pages);
+                DocsCommand.addReactions(message, currentPage > 0, currentPage < result.pages);
 
                 // @ts-ignore
                 let collector = message.createReactionCollector(filter, { time: 999999 });
@@ -109,7 +109,7 @@ export class DocsCommand extends CommandBase {
                             currentPage++;
                             reaction.message.edit(DocsCommand.getEmbed(result, currentPage));
 
-                            DocsCommand.addReactions(message, currentPage > 1, currentPage < result.pages);
+                            DocsCommand.addReactions(message, currentPage > 0, currentPage < result.pages);
 
                         } else if (reaction.emoji.name === '⏪') {
 
@@ -118,7 +118,7 @@ export class DocsCommand extends CommandBase {
                                 currentPage--;
                                 reaction.message.edit(DocsCommand.getEmbed(result, currentPage));
 
-                                DocsCommand.addReactions(message, currentPage > 1, currentPage < result.pages);
+                                DocsCommand.addReactions(message, currentPage > 0, currentPage < result.pages);
 
                             }
 
@@ -129,7 +129,6 @@ export class DocsCommand extends CommandBase {
                         }
 
                         console.log(currentPage);
-
 
                     }
 
