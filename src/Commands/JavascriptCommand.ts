@@ -59,7 +59,7 @@ export class JavascriptCommand extends CommandBase {
 
             const message = await command.obj.channel.send(JavascriptCommand.getEmbed(result, currentPage));
 
-            filter = (reaction: any, user: any) => {
+            const filter = (reaction: any, user: any) => {
 
                 // @ts-ignore
                 return [ '🗑', '⏪', '⏩' ].includes(reaction.emoji.name);
