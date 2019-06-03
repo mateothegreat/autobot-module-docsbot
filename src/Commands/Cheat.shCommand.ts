@@ -39,13 +39,13 @@ export class CheatShCommand extends CommandBase {
      */
     public async run(command: CommandParser) {
 
-        const result = await axios(`https://cheat.sh/${ command.arguments[ 0 ].name }`, { headers: { 'User-Agent': 'curl/7.55.1' } });
+        const result = await axios(`https://cheat.sh/${ command.arguments[ 0 ].name }?Q`, { headers: { 'User-Agent': 'curl/7.55.1' } });
 
         if (result.data) {
 
             command.obj.channel.send(new RichEmbed().setTitle('cheat.sh')
                                                     .setColor(3447003)
-                                                    .setDescription("```md\n" + h2m(result.data).substring(0, 1000) + "```")
+                                                    .setDescription('```md' + "\n" + result.data.substring(0, 1000) + "```")
                                                     .setURL(`https://cheat.sh/${ command.arguments[ 0 ].name }`));
 
         } else {
