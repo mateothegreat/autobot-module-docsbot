@@ -126,7 +126,7 @@ export class JavascriptCommand extends CommandBase {
 
                 if (reaction.users.size === 2) {
 
-                    await reaction.remove();
+                    reaction.remove();
                     // @ts-ignore
                     const emojiNext = await message.react('⏩');
 
