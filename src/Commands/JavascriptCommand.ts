@@ -126,41 +126,41 @@ export class JavascriptCommand extends CommandBase {
 
                 if (reaction.users.size === 2) {
 
-                    reaction.remove();
-                    // @ts-ignore
-                    const emojiNext = await message.react('⏩');
+                    if (reaction.emoji.name === '⏩') {
 
+                        currentPage++;
+
+                        reaction.remove();
+
+                        // @ts-ignore
+                        await message.react('⏩');
+
+                        reaction.message.edit(JavascriptCommand.getEmbed(result, currentPage));
+
+
+                    } else if (reaction.emoji.name === '⏪') {
+
+                        if (currentPage > 0) {
+
+                            currentPage--;
+
+                            reaction.remove();
+
+                            // @ts-ignore
+                            await message.react('⏪');
+
+                            reaction.message.edit(JavascriptCommand.getEmbed(result, currentPage));
+
+                        }
+
+                    } else if (reaction.emoji.name === '🗑') {
+
+                        reaction.message.delete();
+
+                    }
 
                 }
-                //     //
-                //     // if (reaction.emoji.name === '⏩') {
-                //     //     console.log(2);
-                //     //
-                //     //     currentPage++;
-                //     //
-                //     //     reaction.remove();
-                //     //
-                //     //     // reaction.message.edit(JavascriptCommand.getEmbed(result, currentPage));
-                //     //
-                //     //
-                //     // } else if (reaction.emoji.name === '⏪') {
-                //     //
-                //     //     if (currentPage > 0) {
-                //     //
-                //     //         currentPage--;
-                //     //
-                //     //         reaction.remove();
-                //     //
-                //     //         // reaction.message.edit(JavascriptCommand.getEmbed(result, currentPage));
-                //     //
-                //     //     }
-                //     //
-                //     // } else if (reaction.emoji.name === '🗑') {
-                //     //
-                //     //     reaction.message.delete();
-                //     //
-                //     // }
-                //
+
             });
 
             // }, 3000);
