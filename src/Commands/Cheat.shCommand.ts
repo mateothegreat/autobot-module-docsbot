@@ -39,7 +39,7 @@ export class CheatShCommand extends CommandBase {
      */
     public async run(command: CommandParser) {
 
-        const result = await axios(`https://cheat.sh/${ command.arguments[ 0 ].name }`);
+        const result = await axios(`https://cheat.sh/${ command.arguments[ 0 ].name }`, { headers: { 'User-Agent': 'curl/7.55.1' } });
 
         if (result.data) {
 
