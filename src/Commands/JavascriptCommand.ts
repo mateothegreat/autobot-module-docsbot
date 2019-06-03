@@ -81,6 +81,9 @@ export class JavascriptCommand extends CommandBase {
 
                 console.log(reaction);
 
+                // @ts-ignore
+                await message.clearReactions();
+
                 if (reaction.users.size === 2) {
 
                     if (reaction.emoji.name === '⏩') {
@@ -91,7 +94,6 @@ export class JavascriptCommand extends CommandBase {
                         // await reaction.remove();
 
                         // @ts-ignore
-                        await message.clearReactions();
 
                         // @ts-ignore
                         await message.react('⏩');
