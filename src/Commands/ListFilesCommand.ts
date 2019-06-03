@@ -18,7 +18,7 @@ export class ListFilesCommand extends CommandBase {
             event: Event.MESSAGE,
             name: '#list',
             group: 'docs',
-            requiredEnvVars: [ 'DOCSBOT_SAVE_PATH', 'DOCSBOT_ADMIN_ROLE_NAME' ],
+            requiredEnvVars: [ 'DOCSBOT_SAVE_PATH', 'DOCSBOT_ADMIN_ROLE_NAME', 'DOCSBOT_LIMIT_CHARS' ],
             roles: [
 
                 process.env.DOCSBOT_ADMIN_ROLE_NAME

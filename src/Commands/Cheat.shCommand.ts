@@ -20,7 +20,7 @@ export class CheatShCommand extends CommandBase {
             event: Event.MESSAGE,
             name: '#cheat',
             group: 'docs',
-            requiredEnvVars: [ 'DOCSBOT_ADMIN_ROLE_NAME' ],
+            requiredEnvVars: [ 'DOCSBOT_ADMIN_ROLE_NAME', 'DOCSBOT_LIMIT_CHARS' ],
             roles: [
 
                 process.env.DOCSBOT_ADMIN_ROLE_NAME
@@ -46,7 +46,7 @@ export class CheatShCommand extends CommandBase {
 
             command.obj.channel.send(new RichEmbed().setTitle('cheat.sh')
                                                     .setColor(3447003)
-                                                    .setDescription('```md' + "\n" + result.data.substring(0, 2000) + "```")
+                                                    .setDescription('```md' + "\n" + result.data.substring(0, Number(process.env.DOCSBOT_LIMIT_CHARS)) + "```")
                                                     .setURL(`https://cheat.sh/${ command.arguments[ 0 ].name }`));
 
         } else {
