@@ -124,7 +124,7 @@ export class JavascriptCommand extends CommandBase {
 
                 console.log(reaction.users);
 
-                if (reaction.users.size === 2) {
+                if (reaction.users.size === 2 && reaction.users.first().id === '584778107094040596') {
 
                     if (reaction.emoji.name === '⏩') {
 
