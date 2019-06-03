@@ -17,7 +17,7 @@ export class UpdateCommand extends CommandBase {
         super({
 
             event: Event.MESSAGE,
-            name: '!update',
+            name: '#update',
             group: 'docs',
             roles: [
 

@@ -16,7 +16,7 @@ export class TermsCommand extends CommandBase {
         super({
 
             event: Event.MESSAGE,
-            name: '!terms',
+            name: '#terms',
             group: 'docs',
             roles: [
 
