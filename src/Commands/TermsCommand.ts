@@ -18,6 +18,7 @@ export class TermsCommand extends CommandBase {
             event: Event.MESSAGE,
             name: '#terms',
             group: 'docs',
+            requiredEnvVars: [ 'DOCSBOT_SAVE_PATH', 'DOCSBOT_ADMIN_ROLE_NAME' ],
             roles: [
 
                 process.env.DOCSBOT_ADMIN_ROLE_NAME

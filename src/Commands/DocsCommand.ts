@@ -56,11 +56,8 @@ export class DocsCommand extends CommandBase {
             event: Event.MESSAGE,
             name: '*',
             group: 'docs',
-            roles: [
-
-                process.env.DOCSBOT_ADMIN_ROLE_NAME
-
-            ],
+            requiredEnvVars: [ 'DOCSBOT_SAVE_PATH', 'DOCSBOT_ADMIN_ROLE_NAME' ],
+            roles: [ process.env.DOCSBOT_ADMIN_ROLE_NAME ],
             description: '#javascript <search term>'
 
         });

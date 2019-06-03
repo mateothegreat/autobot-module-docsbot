@@ -19,6 +19,7 @@ export class UpdateCommand extends CommandBase {
             event: Event.MESSAGE,
             name: '#update',
             group: 'docs',
+            requiredEnvVars: [ 'DOCSBOT_SAVE_PATH', 'DOCSBOT_ADMIN_ROLE_NAME' ],
             roles: [
 
                 process.env.DOCSBOT_ADMIN_ROLE_NAME

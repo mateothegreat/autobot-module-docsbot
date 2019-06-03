@@ -20,6 +20,7 @@ export class CheatShCommand extends CommandBase {
             event: Event.MESSAGE,
             name: '#cheat',
             group: 'docs',
+            requiredEnvVars: [ 'DOCSBOT_ADMIN_ROLE_NAME' ],
             roles: [
 
                 process.env.DOCSBOT_ADMIN_ROLE_NAME
