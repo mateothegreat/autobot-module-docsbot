@@ -1,6 +1,8 @@
 import * as fs from 'fs';
 import { Doc } from './Doc';
 
+const fuzzyset = require('fuzzyset.js');
+
 export class JSONUtil {
 
     public static getByName(filename: string, name: string): Doc {
@@ -10,6 +12,8 @@ export class JSONUtil {
             if (fs.existsSync(`${ process.env.DOCSBOT_SAVE_PATH }/${ filename }.json`)) {
 
                 const json = require(`${ process.env.DOCSBOT_SAVE_PATH }/${ filename }.json`);
+
+                console.log(fuzzyset.get(name));
 
                 for (let key in json) {
 
@@ -74,7 +78,7 @@ export class JSONUtil {
                 return terms;
 
             }
-            
+
         }
 
     }
