@@ -43,7 +43,7 @@ export class TermsCommand extends CommandBase {
 
             const str = result.join(', ');
 
-            for (let i = 0; i < str.length; i + 2048) {
+            for (let i = 0; i < str.length; i += 2048) {
 
                 command.obj.channel.send(new RichEmbed().setTitle(`devdocs searchable for "${ command.arguments[ 0 ].name }"`)
                                                         .setColor(3447003)
