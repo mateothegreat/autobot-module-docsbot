@@ -128,6 +128,9 @@ export class DocsCommand extends CommandBase {
 
                         }
 
+                        console.log(currentPage);
+
+
                     }
 
                 });
