@@ -1,7 +1,7 @@
-import { Command, CommandBase, CommandConfig, CommandParser } from '@autobot/common';
-import { RichEmbed }                                          from 'discord.js';
-import { Doc }                                                from '../_lib/Doc';
-import { JSONUtil }                                           from '../_lib/JSONUtil';
+import { Command, CommandBase, CommandParser, Event } from '@autobot/common';
+import { RichEmbed }                                  from 'discord.js';
+import { Doc }                                        from '../_lib/Doc';
+import { JSONUtil }                                   from '../_lib/JSONUtil';
 
 const h2m = require('h2m');
 
@@ -37,18 +37,24 @@ export class DocsCommand extends CommandBase {
 
     }
 
-    /**
-     * Name of the language -- supplied by parent class i.e.: javascript, kotlin, etc.
-     */
-    public name: string;
+    public constructor() {
 
-    public constructor(config: CommandConfig) {
+        //
+        // Set this commands configuration.
+        //
+        super({
 
-        super(config);
-        this.config = config;
+            event: Event.MESSAGE,
+            name: '!js',
+            group: 'docs',
+            roles: [
 
-        console.log('config', config);
+                process.env.DOCSBOT_ADMIN_ROLE_NAME
 
+            ],
+            description: '!js <search term>'
+
+        });
 
     }
 
@@ -62,7 +68,7 @@ export class DocsCommand extends CommandBase {
 
         let currentPage: number = 0;
 
-        const result = JSONUtil.getByName(this.name, command.arguments[ 0 ].name);
+        const result = JSONUtil.getByName('javascript', command.arguments[ 0 ].name);
 
         if (result) {
 
