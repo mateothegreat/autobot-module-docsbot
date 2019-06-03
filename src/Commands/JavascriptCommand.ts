@@ -105,13 +105,19 @@ export class JavascriptCommand extends CommandBase {
             // });
 
             // @ts-ignore
-            await message.react('🗑');
+            const emojiTrash = await message.react('🗑');
             // @ts-ignore
-            await message.react('⏪');
+            const emojiPrevious = await message.react('⏪');
             // @ts-ignore
-            await message.react('⏩');
+            const emojiNext = await message.react('⏩');
             // @ts-ignore
             let collector = message.createReactionCollector(filter, { time: 105000 });
+
+            setInterval(() => {
+
+                emojiNext.fetchUsers();
+
+            }, 1000);
 
             // @ts-ignore
             collector.on('collect', async (reaction, collector) => {
