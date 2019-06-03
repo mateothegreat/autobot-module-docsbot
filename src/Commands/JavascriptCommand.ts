@@ -88,7 +88,6 @@ export class JavascriptCommand extends CommandBase {
             // );
 
             // @ts-ignore
-            let collector = message.createReactionCollector(filter, { max: 1, maxEmojis: 3, time: 105000 });
 
             // setTimeout(() => {
 
@@ -111,6 +110,8 @@ export class JavascriptCommand extends CommandBase {
             await message.react('⏪');
             // @ts-ignore
             await message.react('⏩');
+            // @ts-ignore
+            let collector = message.createReactionCollector(filter, { time: 105000 });
 
             // @ts-ignore
             collector.on('collect', async (reaction, collector) => {
