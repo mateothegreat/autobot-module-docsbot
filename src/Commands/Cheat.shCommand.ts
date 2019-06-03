@@ -43,7 +43,7 @@ export class CheatShCommand extends CommandBase {
 
             command.obj.channel.send(new RichEmbed().setTitle('cheat.sh')
                                                     .setColor(3447003)
-                                                    .setDescription("```md\n" + result.data.substring(0, 2048) + "```")
+                                                    .setDescription("```md\n" + result.data.substring(0, 1000) + "```")
                                                     .setURL(`https://cheat.sh/${ command.arguments[ 0 ].name }`));
 
         } else {
