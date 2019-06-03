@@ -39,11 +39,9 @@ export class ListFilesCommand extends CommandBase {
 
         const result = fs.readdirSync(process.env.DOCSBOT_SAVE_PATH);
 
-        console.log(result);
-
         if (result) {
 
-            command.obj.channel.send(new RichEmbed().setTitle(`devdocs searchable for "${ command.arguments[ 0 ].name }"`)
+            command.obj.channel.send(new RichEmbed().setTitle(`devdocs searchable languages list`)
                                                     .setColor(3447003)
                                                     .setDescription(result.join(', ').replace('.json', '')));
 
