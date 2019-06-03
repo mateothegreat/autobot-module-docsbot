@@ -22,6 +22,8 @@ export class JavascriptCommand extends DocsCommand {
 
         });
 
+        this.name = 'javascript';
+
     }
 
 }

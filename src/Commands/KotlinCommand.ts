@@ -22,6 +22,8 @@ export class KotlinCommand extends DocsCommand {
 
         });
 
+        this.name = 'kotlin';
+
     }
 
 }

@@ -38,6 +38,11 @@ export class DocsCommand extends CommandBase {
     }
 
     /**
+     * Name of the language -- supplied by parent class i.e.: javascript, kotlin, etc.
+     */
+    public name: string;
+
+    /**
      * Called when a command matches config.name.
      *
      * @param command Parsed out commamd
@@ -47,7 +52,7 @@ export class DocsCommand extends CommandBase {
 
         let currentPage: number = 0;
 
-        const result = JSONUtil.getByName('javascript', command.arguments[ 0 ].name);
+        const result = JSONUtil.getByName(this.name, command.arguments[ 0 ].name);
 
         if (result) {
 
