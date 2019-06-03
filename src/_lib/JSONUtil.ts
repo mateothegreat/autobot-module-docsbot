@@ -12,6 +12,18 @@ export class JSONUtil {
 
                 const split = key.split(/[\/.]/);
 
+                let pages: number = 0;
+
+                if (split[ split.length - 1 ].length / Number(process.env.DOCSBOT_LIMIT_CHARS) > 0) {
+
+                    pages = Math.ceil(split[ split.length - 1 ].length / Number(process.env.DOCSBOT_LIMIT_CHARS));
+
+                } else {
+
+                    pages = 0;
+
+                }
+                
                 if (split[ split.length - 1 ] == name) {
 
                     return {
@@ -19,7 +31,7 @@ export class JSONUtil {
                         key,
                         name,
                         doc: json[ key ],
-                        pages: Math.ceil(split[ split.length - 1 ].length / Number(process.env.DOCSBOT_LIMIT_CHARS))
+                        pages
 
                     };
 
