@@ -22,7 +22,7 @@ export class JavascriptCommand extends CommandBase {
 
     }
 
-    public static async addReactions(message: any): void {
+    public static async addReactions(message: any) {
 
         // @ts-ignore
         await message.clearReactions();
