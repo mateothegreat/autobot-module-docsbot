@@ -22,6 +22,21 @@ export class JavascriptCommand extends CommandBase {
 
     }
 
+    public static addReactions(message: any): void {
+
+        // @ts-ignore
+        await message.clearReactions();
+
+        // @ts-ignore
+        await message.react('🗑');
+        // @ts-ignore
+        await message.react('⏪');
+        // @ts-ignore
+        await message.react('⏩');
+        // @ts-ignore
+
+    }
+
     public constructor() {
 
         //
@@ -66,14 +81,9 @@ export class JavascriptCommand extends CommandBase {
 
             };
 
-            // @ts-ignore
-            await message.react('🗑');
-            // @ts-ignore
-            await message.react('⏪');
-            // @ts-ignore
-            await message.react('⏩');
-            // @ts-ignore
+            JavascriptCommand.addReactions(message);
 
+            // @ts-ignore
             let collector = message.createReactionCollector(filter, { time: 999999 });
 
             // @ts-ignore
@@ -83,21 +93,13 @@ export class JavascriptCommand extends CommandBase {
 
                 if (reaction.users.size === 2 && reaction.me) {
 
-                    // @ts-ignore
-                    await message.clearReactions();
-
-                    // @ts-ignore
-                    await message.react('🗑');
-                    // @ts-ignore
-                    await message.react('⏪');
-                    // @ts-ignore
-                    await message.react('⏩');
-                    // @ts-ignore
 
                     if (reaction.emoji.name === '⏩') {
 
                         currentPage++;
                         reaction.message.edit(JavascriptCommand.getEmbed(result, currentPage));
+
+                        JavascriptCommand.addReactions(message);
 
                     } else if (reaction.emoji.name === '⏪') {
 
@@ -105,6 +107,8 @@ export class JavascriptCommand extends CommandBase {
 
                             currentPage--;
                             reaction.message.edit(JavascriptCommand.getEmbed(result, currentPage));
+
+                            JavascriptCommand.addReactions(message);
 
                         }
 
